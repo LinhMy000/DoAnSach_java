@@ -1,5 +1,6 @@
 package Controller;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.event.MouseAdapter;
@@ -11,9 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Connection.ConnectionUser;
 import Model.ModelUser;
 import Table.User;
+import View.ViewDangKy;
 import View.ViewMain;
 
 public class ControllerDangNhap {
@@ -88,8 +89,32 @@ public class ControllerDangNhap {
             }
         });
 
-        
-        
+        btDangKy.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                	pnView.removeAll();
+	       	    	pnView.setLayout(new BorderLayout());
+	       	    	pnView.add(new ViewDangKy());
+	       	    	pnView.validate();
+	       	    	pnView.repaint();
+				} 
+                catch (Exception e2) {
+                	System.out.println("Loi submit dang ky!");
+                    lbThongBao.setText(e2.toString());
+				}
+            }
+            
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                btDangNhap.setBackground(new Color(204, 255, 255));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	btDangNhap.setBackground(new Color(240, 240, 240));
+            }
+        });
     }
 
 }
