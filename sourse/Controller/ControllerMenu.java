@@ -66,7 +66,9 @@ public class ControllerMenu {
 	     public void mouseClicked(MouseEvent e) {
 	    	 switch (kind) {
 	               case "Trang chu": node = new ViewTrangChu(); break;
-	               case "Khach hang": node = new KhachHangJPanel(); break;
+//	               case "Khach hang": node = new KhachHangJPanel(); break;
+                       case "Khach hang": node = new ViewKhachHang(); break;
+
 	               case "Sach": node = new ViewSach(); break;
 	               case "Hoa don": node = new ViewHoaDon(); break;
 	               case "Thong ke du lieu": node = new ViewThongKe(); break;
