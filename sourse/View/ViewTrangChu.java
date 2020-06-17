@@ -15,7 +15,7 @@ public class ViewTrangChu extends JPanel {
 		setBackground(new Color(0, 0, 0));
 		BufferedImage myPicture;
 		try {
-			myPicture = ImageIO.read(new File("C://Users//Huong_Nho_UIT//Downloads//DoAnSach_java-master (1)//DoAnSach_java-master//DoAnSach//source//Image//ImageSachDen.jpg"));
+			myPicture = ImageIO.read(new File("C://Users//LENOVO//eclipse-workspace//DoAnSach//source//Image//ImageSachDen.jpg"));
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 			add(picLabel);
 		} 

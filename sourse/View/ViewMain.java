@@ -29,15 +29,11 @@ public class ViewMain extends JFrame {
 	private JPanel pnView;
 	
 	public ViewMain(boolean quyen) {
-		initComponents();
+		initComponents(quyen);
 		setVisible(true);
-		if(!quyen)
-			initMenu();
-		else
-			initMenuAdmin();
 	}
 
-	public void initComponents() {
+	public void initComponents(boolean quyen) {
         setTitle("Quan Ly Cua Hang Sach");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -47,7 +43,7 @@ public class ViewMain extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JLabel lbTitle = new JLabel("CỬA HÀNG SÁCH");
+		JLabel lbTitle = new JLabel("CUA HANG SACH");
 		lbTitle.setForeground(Color.RED);
 		lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lbTitle.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -109,9 +105,7 @@ public class ViewMain extends JFrame {
 		pnView = new JPanel();
 		pnView.setBackground(new Color(0, 0, 0));
 		contentPane.add(pnView, BorderLayout.CENTER);
-	}
 	
-	public void initMenu() {
 		List<ModelMenu> listDanhMuc = new ArrayList<>();
         listDanhMuc.add(new ModelMenu("Trang chu", lbTrangChu));
         listDanhMuc.add(new ModelMenu("Khach hang", lbKhachHang));
@@ -120,20 +114,12 @@ public class ViewMain extends JFrame {
         listDanhMuc.add(new ModelMenu("Thong ke du lieu", lbThongKe));
         ControllerMenu controller = new ControllerMenu(pnView);
         controller.setView(lbTrangChu);
-        controller.setEvent(listDanhMuc);
+        if(quyen) {
+        	listDanhMuc.add(new ModelMenu("User", lbUser));
+            controller.setEventAdmin(listDanhMuc);
+        }
+        else
+        	controller.setEvent(listDanhMuc);
+	
 	}
-	public void initMenuAdmin() {
-		ControllerMenu controller = new ControllerMenu(pnView);
-        controller.setView(lbTrangChu);
-		
-		List<ModelMenu> listDanhMuc = new ArrayList<>();
-        listDanhMuc.add(new ModelMenu("Trang chu", lbTrangChu));
-        listDanhMuc.add(new ModelMenu("Khach hang", lbKhachHang));
-        listDanhMuc.add(new ModelMenu("Sach", lbSach));
-        listDanhMuc.add(new ModelMenu("Hoa don", lbHoaDon));
-        listDanhMuc.add(new ModelMenu("Thong ke du lieu", lbThongKe));
-        listDanhMuc.add(new ModelMenu("User", lbUser));
-        controller.setEventAdmin(listDanhMuc);
-	}
-
 }

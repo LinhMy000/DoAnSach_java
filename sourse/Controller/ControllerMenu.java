@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Model.ModelMenu;
-import View.KhachHangJPanel;
 import View.ViewHoaDon;
 import View.ViewKhachHang;
 import View.ViewSach;
@@ -66,9 +65,7 @@ public class ControllerMenu {
 	     public void mouseClicked(MouseEvent e) {
 	    	 switch (kind) {
 	               case "Trang chu": node = new ViewTrangChu(); break;
-//	               case "Khach hang": node = new KhachHangJPanel(); break;
-                       case "Khach hang": node = new ViewKhachHang(); break;
-
+	               case "Khach hang": node = new ViewKhachHang(); break;
 	               case "Sach": node = new ViewSach(); break;
 	               case "Hoa don": node = new ViewHoaDon(); break;
 	               case "Thong ke du lieu": node = new ViewThongKe(); break;
@@ -131,7 +128,7 @@ public class ControllerMenu {
 	     public void mouseClicked(MouseEvent e) {
 	    	 switch (kind) {
 	               case "Trang chu": node = new ViewTrangChu(); break;
-	               case "Khach hang": node = new KhachHangJPanel(); break;
+	               case "Khach hang": node = new ViewKhachHang(); break;
 	               case "Sach": node = new ViewSach(); break;
 	               case "Hoa don": node = new ViewHoaDon(); break;
 	               case "Thong ke du lieu": node = new ViewThongKe(); break;

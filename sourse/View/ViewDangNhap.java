@@ -32,16 +32,16 @@ public class ViewDangNhap extends JDialog {
 	private JButton btDangKy;
 	private JPanel pnView;
 
-	public static void main(String[] args) {
-		try {
-			ViewDangNhap dialog = new ViewDangNhap();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		try {
+//			ViewDangNhap dialog = new ViewDangNhap();
+//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//			dialog.setVisible(true);
+//		} 
+//		catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	public ViewDangNhap() {
 		setTitle("Dang Nhap / Dang Ky");
@@ -56,7 +56,7 @@ public class ViewDangNhap extends JDialog {
 			{
 				BufferedImage myPicture;
 				try {
-					myPicture = ImageIO.read(new File("C://Users//Huong_Nho_UIT//Downloads//DoAnSach_java-master (1)//DoAnSach_java-master//DoAnSach//source//Image//ImageSachDen.jpg"));
+					myPicture = ImageIO.read(new File("C://Users//LENOVO//eclipse-workspace//DoAnSach//source//Image//ImageSachDen.jpg"));
 					JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 //					picLabel.setSize(panel.getWidth(), panel.getHeight());
 					panel.add(picLabel);

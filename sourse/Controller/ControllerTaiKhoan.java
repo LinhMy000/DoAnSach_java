@@ -172,7 +172,7 @@ public class ControllerTaiKhoan {
 						user.setHoTen(tfHoTen.getText());
 						user.setTinhTrang(cbTinhTrang.isSelected());
 						user.setQuyen(cbQuyen.isSelected());
-						list.add(user);
+//						list.add(user);
 						int row = ModelUser.insert(user);
 						if (row != 0) {
 							tfThongBao.setText("Them thanh cong!");
