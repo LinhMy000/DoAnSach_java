@@ -6,6 +6,13 @@ public class CTHD {
 	private int soLuong;
 	private double thanhTien;
 	
+	public CTHD() {
+		maHD = 0;
+		maSach = 0;
+		soLuong = 0;
+		thanhTien = 0;
+	}
+	
 	public int getMaHD() {
 		return maHD;
 	}

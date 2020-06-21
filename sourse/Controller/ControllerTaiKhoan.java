@@ -161,7 +161,8 @@ public class ControllerTaiKhoan {
 				if (tfTaiKhoan.getText().length() == 0 || tfMatKhau.getText().length() == 0
 						|| tfHoTen.getText().length() == 0) {
 					tfThongBao.setText("Vui long dien day du thong tin!");
-				} else {
+				} 
+				else {
 					int dia = JOptionPane.showConfirmDialog(null, "Ban co muon them khong?", "Thong bao",
 							JOptionPane.YES_NO_OPTION);
 					if (dia == JOptionPane.YES_OPTION) {

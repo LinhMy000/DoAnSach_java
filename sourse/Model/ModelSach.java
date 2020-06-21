@@ -14,6 +14,28 @@ import Table.Sach;
 public class ModelSach {
 	private static Connection con = ConnectionDB.getConnection();
 
+	public static Sach getSach(int id){
+		Sach s = new Sach();
+		String sql = "select * from sach where masach = " + id;
+        try {
+            Statement ps = (Statement) con.createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            while (rs.next()) {
+            	s.setMaSach(rs.getInt("masach"));
+            	s.setTenSach(rs.getString("tensach"));
+            	s.setTacGia(rs.getString("tacgia"));
+            	s.setGia(rs.getDouble("gia"));
+            	s.setSoLuong(rs.getInt("soluong"));
+            }
+            ps.close();
+        } 
+        catch (Exception e) {
+            System.out.println("Loi tim sach !");
+        	e.printStackTrace();
+        }
+        return s;
+	}
+	
 	public static List<Sach> getSachs(){
 		List<Sach> list = new ArrayList<>();
 		String sql = "select * from sach";

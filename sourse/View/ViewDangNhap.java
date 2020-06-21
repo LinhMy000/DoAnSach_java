@@ -1,10 +1,6 @@
 package View;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
@@ -16,35 +12,26 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import Controller.ControllerDangNhap;
+import java.awt.Color;
 
 public class ViewDangNhap extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfTaiKhoan;
-	private JTextField tfMatKhau;
+	private JPasswordField tfMatKhau;
 	private JLabel lbThongBao;
 	private JButton btDangNhap;
 	private JButton btDangKy;
 	private JPanel pnView;
 
-//	public static void main(String[] args) {
-//		try {
-//			ViewDangNhap dialog = new ViewDangNhap();
-//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//			dialog.setVisible(true);
-//		} 
-//		catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 	public ViewDangNhap() {
-		setTitle("Dang Nhap / Dang Ky");
+		setTitle("SIGN IN");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(3, 3, 3, 3));
@@ -58,13 +45,11 @@ public class ViewDangNhap extends JDialog {
 				try {
 					myPicture = ImageIO.read(new File("C://Users//LENOVO//eclipse-workspace//DoAnSach//source//Image//ImageSachDen.jpg"));
 					JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-//					picLabel.setSize(panel.getWidth(), panel.getHeight());
 					panel.add(picLabel);
 				} 
 				catch (IOException e) {
 					e.printStackTrace();
 				}
-				
 			}
 		}
 		{
@@ -73,30 +58,52 @@ public class ViewDangNhap extends JDialog {
 			contentPanel.add(pnView);
 			pnView.setLayout(new GridLayout(6, 0, 0, 0));
 			{
-				JLabel lbTaiKhoan = new JLabel("Tai khoan");
-				lbTaiKhoan.setFont(new Font("Tahoma", Font.PLAIN, 13));
-				pnView.add(lbTaiKhoan);
+				BufferedImage myPicture;
+				try {
+					myPicture = ImageIO.read(new File("C://Users//LENOVO//eclipse-workspace//DoAnSach//source//Image//user.png"));
+					JLabel lbTaiKhoan = new JLabel(new ImageIcon(myPicture));
+					lbTaiKhoan.setHorizontalAlignment(SwingConstants.LEADING);
+					lbTaiKhoan.setText("Username");
+					lbTaiKhoan.setFont(new Font("Tahoma", Font.PLAIN, 14));
+					pnView.add(lbTaiKhoan);
+				} 
+				catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 			{
 				tfTaiKhoan = new JTextField();
-				tfTaiKhoan.setFont(new Font("Tahoma", Font.PLAIN, 13));
+				tfTaiKhoan.setFont(new Font("Tahoma", Font.PLAIN, 14));
 				pnView.add(tfTaiKhoan);
 				tfTaiKhoan.setColumns(10);
 			}
 			{
-				JLabel lbMatKhau = new JLabel("Mat khau");
-				lbMatKhau.setFont(new Font("Tahoma", Font.PLAIN, 13));
-				pnView.add(lbMatKhau);
+				BufferedImage myPicture;
+				try {
+					myPicture = ImageIO.read(new File("C://Users//LENOVO//eclipse-workspace//DoAnSach//source//Image//password.png"));
+					JLabel lbMatKhau = new JLabel(new ImageIcon(myPicture));
+					lbMatKhau.setHorizontalAlignment(SwingConstants.LEADING);
+					lbMatKhau.setText("Password");
+					lbMatKhau.setFont(new Font("Tahoma", Font.PLAIN, 14));
+					pnView.add(lbMatKhau);
+				} 
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+//				JLabel lbMatKhau = new JLabel("Password");
+//				lbMatKhau.setFont(new Font("Tahoma", Font.PLAIN, 14));
+//				pnView.add(lbMatKhau);
 			}
 			{
-				tfMatKhau = new JTextField();
-				tfMatKhau.setFont(new Font("Tahoma", Font.PLAIN, 13));
+				tfMatKhau = new JPasswordField();
+				tfMatKhau.setFont(new Font("Tahoma", Font.PLAIN, 14));
 				pnView.add(tfMatKhau);
 				tfMatKhau.setColumns(10);
 			}
 			{
-				lbThongBao = new JLabel("Vui long nhap thong tin");
-				lbThongBao.setFont(new Font("Tahoma", Font.PLAIN, 12));
+				lbThongBao = new JLabel("");
+				lbThongBao.setForeground(Color.RED);
+				lbThongBao.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
 				lbThongBao.setHorizontalAlignment(SwingConstants.CENTER);
 				pnView.add(lbThongBao);
 			}
@@ -104,13 +111,15 @@ public class ViewDangNhap extends JDialog {
 				JPanel buttonPane = new JPanel();
 				pnView.add(buttonPane, BorderLayout.SOUTH);
 				{
-					btDangNhap = new JButton("DANG NHAP");
+					btDangNhap = new JButton("SIGN IN");
+					btDangNhap.setFont(new Font("Tahoma", Font.BOLD, 14));
 					btDangNhap.setActionCommand("OK");
 					buttonPane.add(btDangNhap);
 					getRootPane().setDefaultButton(btDangNhap);
 				}
 				{
-					btDangKy = new JButton("DANG KY");
+					btDangKy = new JButton("SIGN UP");
+					btDangKy.setFont(new Font("Tahoma", Font.BOLD, 14));
 					btDangKy.setActionCommand("");
 					buttonPane.add(btDangKy);
 				}

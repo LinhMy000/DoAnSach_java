@@ -6,11 +6,20 @@ import java.util.List;
 
 public class HoaDon {
 	private int mahd;
-	private List<CTHD> cthd = new ArrayList<>();
 	private Date ngayhd;
-	private int makh = (Integer) null;
-	private int manv = (Integer) null;
+	private int makh;
+	private int manv;
 	private double tongTien;
+	private List<CTHD> cthd;
+
+	public HoaDon() {
+		mahd = 0;
+		ngayhd = null;
+		makh = 0;
+		manv = 0;
+		tongTien = 0;
+		cthd = new ArrayList<CTHD>();
+	}
 	
 	public int getMahd() {
 		return mahd;

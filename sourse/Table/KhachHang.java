@@ -1,8 +1,6 @@
 package Table;
-import java.util.Date;
-//import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
+import java.sql.Date;
 
 public class KhachHang {
 	private int maKH;
@@ -28,13 +26,13 @@ public class KhachHang {
 		this.ngaySinh = ngaySinh;
 		this.diem = diem;
 	}
-        
+
 	public int getMaKH() {
 		return maKH;
 	}
-        public void setMaKH(int maKH){
-            this.maKH = maKH;
-        }
+	public void setMaKH(int maKH) {
+		this.maKH = maKH;
+	}
 	public String getHoTen() {
 		return hoTen;
 	}
@@ -65,19 +63,9 @@ public class KhachHang {
 	public void setDiem(int diem) {
 		this.diem = diem;
 	}
-
-    @Override
-    public String toString() {
-        return "KhachHang{" + "maKH=" + maKH + ", hoTen=" + hoTen + ", sdt=" + sdt + ", diaChi=" + diaChi + ", ngaySinh=" + ngaySinh + ", diem=" + diem + '}';
-    }
-    public Date getNgay(String d){
-        Date ngay = null;
-        try{
-            ngay = (Date) new SimpleDateFormat("dd-mm-yyyy").parse(d);
-        }catch(ParseException e){
-            System.out.println("Loi .Vui long nhap lai !");
-            e.printStackTrace();
-        }return ngay;
-    }
 	
+	@Override
+	public String toString() {
+		return hoTen;
+	}
 }

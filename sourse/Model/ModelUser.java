@@ -14,6 +14,24 @@ import Table.User;
 public class ModelUser {
 	private static Connection con = ConnectionDB.getConnection();
 
+	public static String getTenUser(int id){
+		String name = null;
+		String sql = "select hoten from user where id = " + id;
+        try {
+            Statement ps = (Statement) con.createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            while (rs.next()) {
+            	name = rs.getString(1);
+            }
+            ps.close();
+        } 
+        catch (Exception e) {
+            System.out.println("Loi tim ten nhan vien !");
+        	e.printStackTrace();
+        }
+        return name;
+	}
+	
 	public static User login(String taiKhoan, String matKhau) {
         User user = null;
         String sql = "SELECT * FROM user WHERE taikhoan LIKE ? AND matkhau LIKE ?";
@@ -102,33 +120,6 @@ public class ModelUser {
 		}
 		return row;
 	}
-	
-	public static int createOrUpdate(User user) {
-        try {
-            String sql = "INSERT INTO user VALUES(null, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE taikhoan = VALUES(taikhoan), matkhau = VALUES(matkhau), hoten = VALUES(hoten), tinhtrang = VALUES(tinhtrang), quyen = VALUES(quyen);";
-            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-//            ps.setInt(1, null);
-            ps.setString(1, user.getTaiKhoan());
-			ps.setString(2, user.getMatKhau());
-			ps.setString(3, user.getHoTen());
-			ps.setBoolean(4, user.isTinhTrang());
-			ps.setBoolean(5, user.isQuyen());
-//			ps.setInt(6, user.getId());
-            ps.execute();
-            ResultSet rs = ps.getGeneratedKeys();
-            int generatedKey = 0;
-            if (rs.next()) {
-                generatedKey = rs.getInt(1);
-            }
-            ps.close();
-            return generatedKey;
-        } 
-        catch (Exception e) {
-            System.out.println("Khong the truy van!");
-            e.printStackTrace();
-        }
-        return 0;
-    }
 
 	public static int delete(int id) {
 		int row = 0;
@@ -163,5 +154,50 @@ public class ModelUser {
         	e.printStackTrace();
 		}
 		return row;
+	}
+	
+	public static int createOrUpdate(User user) {
+        try {
+            String sql = "INSERT INTO user VALUES(null, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE taikhoan = VALUES(taikhoan), matkhau = VALUES(matkhau), hoten = VALUES(hoten), tinhtrang = VALUES(tinhtrang), quyen = VALUES(quyen);";
+            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+//            ps.setInt(1, null);
+            ps.setString(1, user.getTaiKhoan());
+			ps.setString(2, user.getMatKhau());
+			ps.setString(3, user.getHoTen());
+			ps.setBoolean(4, user.isTinhTrang());
+			ps.setBoolean(5, user.isQuyen());
+//			ps.setInt(6, user.getId());
+            ps.execute();
+            ResultSet rs = ps.getGeneratedKeys();
+            int generatedKey = 0;
+            if (rs.next()) {
+                generatedKey = rs.getInt(1);
+            }
+            ps.close();
+            return generatedKey;
+        } 
+        catch (Exception e) {
+            System.out.println("Khong the truy van!");
+            e.printStackTrace();
+        }
+        return 0;
+    }
+	
+	public static boolean KiemTraTaiKhoan(String s) {
+		String sql = "select taikhoan from user";
+        try {
+            Statement ps = (Statement) con.createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            while (rs.next()) {
+            	if(s.equals(rs.getString(1)))
+            		return false;
+            }
+            ps.close();
+        } 
+        catch (Exception e) {
+            System.out.println("Loi tim ten nhan vien !");
+        	e.printStackTrace();
+        }
+        return true;
 	}
 }
