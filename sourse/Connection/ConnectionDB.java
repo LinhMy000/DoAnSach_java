@@ -14,7 +14,7 @@ public class ConnectionDB {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, user, pass);
-          //System.out.println("Ket noi thanh cong csdl!");
+//            System.out.println("Ket noi thanh cong csdl!");
         } 
         catch (ClassNotFoundException | SQLException e) {
             System.out.println("Khong ket noi duoc csdl!");
@@ -23,9 +23,9 @@ public class ConnectionDB {
         return con;
     }
 	
-	//public static void main(String[] args) throws SQLException{
-	//	Connection c = getConnection();
-	 //   c.close();
-  //}
+//	public static void main(String[] args) throws SQLException{
+//		Connection c = getConnection();
+//	    c.close();
+//    }
 	
 }

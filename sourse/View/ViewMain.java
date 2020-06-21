@@ -112,6 +112,7 @@ public class ViewMain extends JFrame {
         listDanhMuc.add(new ModelMenu("Sach", lbSach));
         listDanhMuc.add(new ModelMenu("Hoa don", lbHoaDon));
         listDanhMuc.add(new ModelMenu("Thong ke du lieu", lbThongKe));
+        
         ControllerMenu controller = new ControllerMenu(pnView);
         controller.setView(lbTrangChu);
         if(quyen) {

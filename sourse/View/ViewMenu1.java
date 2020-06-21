@@ -8,8 +8,6 @@ import Model.ModelMenu1;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class ViewMenu1 extends javax.swing.JFrame {
     
     public ViewMenu1(boolean quyen) {
@@ -17,11 +15,9 @@ public class ViewMenu1 extends javax.swing.JFrame {
         setVisible(true);
         if(!quyen)
             initMenu();
-	else
+        else
             initMenuAdmin();
-        
     }
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -98,7 +94,7 @@ public class ViewMenu1 extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("CỬA HÀNG SÁCH");
+        jLabel11.setText("Cá»¬A HÃ€NG SÃ�CH");
 
         javax.swing.GroupLayout head_panelLayout = new javax.swing.GroupLayout(head_panel);
         head_panel.setLayout(head_panelLayout);
@@ -152,7 +148,7 @@ public class ViewMenu1 extends javax.swing.JFrame {
 
         lbTrangChu.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lbTrangChu.setForeground(new java.awt.Color(240, 240, 240));
-        lbTrangChu.setText("Trang chủ");
+        lbTrangChu.setText("Trang chá»§");
 
         lbIconHome.setIcon(new javax.swing.ImageIcon("C:/Users/AD/Documents/NetBeansProjects/QL_Sach/src/Image/icons8_home_30px.png")); // NOI18N
 
@@ -211,7 +207,7 @@ public class ViewMenu1 extends javax.swing.JFrame {
         lbKhachHang.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lbKhachHang.setForeground(new java.awt.Color(240, 240, 240));
         lbKhachHang.setIcon(new javax.swing.ImageIcon("C:/Users/AD/Documents/NetBeansProjects/QL_Sach/src/Image/icons8_business_group_30px.png")); // NOI18N
-        lbKhachHang.setText("Khách hàng");
+        lbKhachHang.setText("KhÃ¡ch hÃ ng");
 
         javax.swing.GroupLayout pnKhachHangLayout = new javax.swing.GroupLayout(pnKhachHang);
         pnKhachHang.setLayout(pnKhachHangLayout);
@@ -265,7 +261,7 @@ public class ViewMenu1 extends javax.swing.JFrame {
         lbSach.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lbSach.setForeground(new java.awt.Color(240, 240, 240));
         lbSach.setIcon(new javax.swing.ImageIcon("C:/Users/AD/Documents/NetBeansProjects/QL_Sach/src/Image/icons8_open_book_30px.png")); // NOI18N
-        lbSach.setText("Sách");
+        lbSach.setText("SÃ¡ch");
 
         javax.swing.GroupLayout pnSachLayout = new javax.swing.GroupLayout(pnSach);
         pnSach.setLayout(pnSachLayout);
@@ -319,7 +315,7 @@ public class ViewMenu1 extends javax.swing.JFrame {
         lbBanHang.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lbBanHang.setForeground(new java.awt.Color(240, 240, 240));
         lbBanHang.setIcon(new javax.swing.ImageIcon("C:/Users/AD/Documents/NetBeansProjects/QL_Sach/src/Image/icons8_shopping_cart_30px.png")); // NOI18N
-        lbBanHang.setText("Bán Hàng");
+        lbBanHang.setText("BÃ¡n HÃ ng");
 
         javax.swing.GroupLayout pnBanHangLayout = new javax.swing.GroupLayout(pnBanHang);
         pnBanHang.setLayout(pnBanHangLayout);
@@ -359,7 +355,7 @@ public class ViewMenu1 extends javax.swing.JFrame {
         lbHoaDon.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lbHoaDon.setForeground(new java.awt.Color(240, 240, 240));
         lbHoaDon.setIcon(new javax.swing.ImageIcon("C:/Users/AD/Documents/NetBeansProjects/QL_Sach/src/Image/icons8_bill_30px.png")); // NOI18N
-        lbHoaDon.setText("Hóa đơn");
+        lbHoaDon.setText("HÃ³a Ä‘Æ¡n");
 
         ind_5.setBackground(new java.awt.Color(255, 255, 255));
         ind_5.setOpaque(false);
@@ -427,7 +423,7 @@ public class ViewMenu1 extends javax.swing.JFrame {
         lbThongKe.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lbThongKe.setForeground(new java.awt.Color(240, 240, 240));
         lbThongKe.setIcon(new javax.swing.ImageIcon("C:/Users/AD/Documents/NetBeansProjects/QL_Sach/src/Image/icons8_pie_chart_30px.png")); // NOI18N
-        lbThongKe.setText("Thống kê");
+        lbThongKe.setText("Thá»‘ng kÃª");
 
         javax.swing.GroupLayout pnThongKeLayout = new javax.swing.GroupLayout(pnThongKe);
         pnThongKe.setLayout(pnThongKeLayout);
@@ -481,7 +477,7 @@ public class ViewMenu1 extends javax.swing.JFrame {
         lbTaiKhoan.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lbTaiKhoan.setForeground(new java.awt.Color(240, 240, 240));
         lbTaiKhoan.setIcon(new javax.swing.ImageIcon("C:/Users/AD/Documents/NetBeansProjects/QL_Sach/src/Image/icons8_customer_30px.png")); // NOI18N
-        lbTaiKhoan.setText("Tài khoản");
+        lbTaiKhoan.setText("TÃ i khoáº£n");
 
         javax.swing.GroupLayout pnTaiKhoanLayout = new javax.swing.GroupLayout(pnTaiKhoan);
         pnTaiKhoan.setLayout(pnTaiKhoanLayout);
@@ -661,24 +657,24 @@ public class ViewMenu1 extends javax.swing.JFrame {
    
     
     private void setColor(JPanel ind) {
-        //Color(39,57,82)); màu khi mouse press
+        //Color(39,57,82)); mÃ u khi mouse press
         ind.setOpaque(true);
     }
         
     private void resetColor(JPanel [] ind) {
-        //Color(23,35,55)); màu khi mouse release                
+        //Color(23,35,55)); mÃ u khi mouse release                
         for (JPanel ind1 : ind) {
             ind1.setOpaque(false);
         }
     }
     
     
-        //Color(50, 69, 90)); màu khi mouse enter
+        //Color(50, 69, 90)); mÃ u khi mouse enter
         
         
    
     
-        //Color(23,35,55));  màu khi mouse exit 
+        //Color(23,35,55));  mÃ u khi mouse exit 
         
         
     

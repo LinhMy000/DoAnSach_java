@@ -52,5 +52,4 @@ public class Sach {
 	public void setGia(double gia) {
 		this.gia = gia;
 	}
-	
 }
