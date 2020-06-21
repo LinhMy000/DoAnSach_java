@@ -13,7 +13,9 @@ import javax.swing.SwingConstants;
 
 import com.toedter.calendar.JDateChooser;
 
-import Controller.ControllerHoaDon;
+import Controller.ControllerBanHang;
+import Table.KhachHang;
+import Table.User;
 
 public class ViewHoaDon extends JPanel {
 	private JTextField tfSearch;
@@ -60,13 +62,13 @@ public class ViewHoaDon extends JPanel {
 		JLabel lblNewLabel = new JLabel("Khach hang");
 		panel_1.add(lblNewLabel);
 		
-		JComboBox cbbKH = new JComboBox();
+		JComboBox cbbKH = new JComboBox<KhachHang>();
 		panel_1.add(cbbKH);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nhan vien");
 		panel_1.add(lblNewLabel_1);
 		
-		JComboBox cbbNV = new JComboBox();
+		JComboBox cbbNV = new JComboBox<User>();
 		panel_1.add(cbbNV);
 		
 		JLabel lblNewLabel_2 = new JLabel("Ngay HD");
@@ -90,12 +92,13 @@ public class ViewHoaDon extends JPanel {
 		panel_1.add(btOut);
 		
 		JLabel lbTB = new JLabel("");
-		lbTB.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
-		lbTB.setHorizontalAlignment(SwingConstants.CENTER);
 		lbTB.setForeground(Color.RED);
+		lbTB.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		lbTB.setHorizontalAlignment(SwingConstants.CENTER);
+//		lbTB.setForeground(Color.RED);
 		panel_1.add(lbTB);
 
-		ControllerHoaDon ctl = new ControllerHoaDon(pnSP,tfSearch,pnCTHD,btDelete,cbbNV,cbbKH,dcNgayHD,btAdd,btOut,tfTT,lbTB,tfMaHD);
+		ControllerBanHang ctl = new ControllerBanHang(pnSP,tfSearch,pnCTHD,btDelete,cbbNV,cbbKH,dcNgayHD,btAdd,btOut,tfTT,lbTB,tfMaHD);
 		ctl.setViewAndEvent();
 	}
 }

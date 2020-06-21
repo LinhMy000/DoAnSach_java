@@ -83,7 +83,5 @@ public class ViewUser extends JPanel {
 		
 		ControllerTaiKhoan ct = new ControllerTaiKhoan(btAdd,btDelete,tfSearch,tfTK,tfMK,tfHT,cbTT,cbQ,lbTB,pnTable); 
 		ct.setViewAndEvent();
-
 	}
-
 }
