@@ -5,13 +5,11 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import Model.ModelMenu;
-import View.ViewHoaDon;
-import View.ViewKhachHang;
+import View.HoaDonJpanel;
+import View.ViewKhachHang1;
 import View.ViewSach;
 import View.ViewThongKe;
 import View.ViewTrangChu;
@@ -66,9 +64,11 @@ public class ControllerMenu {
 	     public void mouseClicked(MouseEvent e) {
 	    	 switch (kind) {
 	               case "Trang chu": node = new ViewTrangChu(); break;
-	               case "Khach hang": node = new ViewKhachHang(); break;
+                       case "Khach hang": node = new ViewKhachHang1(); break;
+
 	               case "Sach": node = new ViewSach(); break;
-	               case "Hoa don": node = new ViewHoaDon(); break;
+//	               case "Hoa don": node = new ViewHoaDon(); break;
+                       case "Hoa don": node = new HoaDonJpanel(); break;
 	               case "Thong ke du lieu": node = new ViewThongKe(); break;
 	               default: break;
 	         }
@@ -129,9 +129,10 @@ public class ControllerMenu {
 	     public void mouseClicked(MouseEvent e) {
 	    	 switch (kind) {
 	               case "Trang chu": node = new ViewTrangChu(); break;
-	               case "Khach hang": node = new ViewKhachHang(); break;
+                       case "Khach hang": node = new ViewKhachHang1(); break;
 	               case "Sach": node = new ViewSach(); break;
-	               case "Hoa don": node = new ViewHoaDon(); break;
+//	               case "Hoa don": node = new ViewHoaDon(); break;
+                       case "Hoa don": node = new HoaDonJpanel(); break;
 	               case "Thong ke du lieu": node = new ViewThongKe(); break;
 	               case "User": node = new ViewUser(); break;
 	               default: break;
