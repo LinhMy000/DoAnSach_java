@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import Model.ModelMenu;
 import View.HoaDonJpanel;
+import View.ViewHoaDon1;
+import View.ViewHoaDon;
 import View.ViewKhachHang1;
 import View.ViewSach;
 import View.ViewThongKe;
@@ -67,8 +69,8 @@ public class ControllerMenu {
                        case "Khach hang": node = new ViewKhachHang1(); break;
 
 	               case "Sach": node = new ViewSach(); break;
-//	               case "Hoa don": node = new ViewHoaDon(); break;
-                       case "Hoa don": node = new HoaDonJpanel(); break;
+	               case "Hoa don": node = new ViewHoaDon1(); break;
+//                       case "Hoa don": node = new HoaDonJpanel(); break;
 	               case "Thong ke du lieu": node = new ViewThongKe(); break;
 	               default: break;
 	         }
@@ -131,8 +133,8 @@ public class ControllerMenu {
 	               case "Trang chu": node = new ViewTrangChu(); break;
                        case "Khach hang": node = new ViewKhachHang1(); break;
 	               case "Sach": node = new ViewSach(); break;
-//	               case "Hoa don": node = new ViewHoaDon(); break;
-                       case "Hoa don": node = new HoaDonJpanel(); break;
+	               case "Hoa don": node = new ViewHoaDon1(); break;
+//                       case "Hoa don": node = new HoaDonJpanel(); break;
 	               case "Thong ke du lieu": node = new ViewThongKe(); break;
 	               case "User": node = new ViewUser(); break;
 	               default: break;
