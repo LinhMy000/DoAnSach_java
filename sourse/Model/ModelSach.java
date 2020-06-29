@@ -9,7 +9,9 @@ import java.util.List;
 import com.mysql.jdbc.Statement;
 
 import Connection.ConnectionDB;
+import Table.KhachHang;
 import Table.Sach;
+import java.sql.Date;
 
 public class ModelSach {
 	private static Connection con = ConnectionDB.getConnection();
@@ -83,7 +85,25 @@ public class ModelSach {
         }
         return generatedKey;
     }
-
+        public static int insert(Sach sach) {
+		int row = 0;
+        String sql = "insert into sach values(null,?,?,?,?)";
+        try {
+        	PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(2, sach.getTenSach());
+		ps.setString(3, sach.getTacGia());
+		ps.setDouble(4, sach.getGia());
+                ps.setInt(4, sach.getSoLuong());
+            row = ps.executeUpdate();
+            ps.close();
+		} 
+        catch (Exception e) {
+        	System.out.println("Loi them sach!");
+        	e.printStackTrace();
+		}
+		return row;
+	}
+        
 	public static int delete(int id) {
 		int row = 0;
 		String sql = "delete from sach where id=" + id;
