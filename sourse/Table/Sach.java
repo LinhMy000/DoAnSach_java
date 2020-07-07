@@ -25,9 +25,9 @@ public class Sach {
 	public int getMaSach() {
 		return maSach;
 	}
-	public void setMaSach(int maSach) {
-		this.maSach = maSach;
-	}
+        public void setMaSach(int maSach){
+            this.maSach=maSach;
+        }
 	public String getTenSach() {
 		return tenSach;
 	}
@@ -52,4 +52,5 @@ public class Sach {
 	public void setGia(double gia) {
 		this.gia = gia;
 	}
+	
 }

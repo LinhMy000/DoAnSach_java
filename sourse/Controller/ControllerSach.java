@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import Connection.SachDAO;
+import Connection.ConnectionSach;
 import Model.ModelKhachHang;
 import Model.ModelSach;
 import Table.KhachHang;
@@ -70,7 +70,7 @@ public class ControllerSach {
  
     public void setViewAndEvent() {
         DefaultTableModel model = new DefaultTableModel(
-                new String[] {"MaSach", "TenSach", "TacGia", "Gia", "SoLuong"},0) {
+                new String[] {"STT","MaSach", "TenSach", "TacGia", "Gia", "SoLuong"},0) {
             @Override
             public boolean isCellEditable(int row, int col) {
                 return (col != 0 && col != 1);
@@ -78,23 +78,22 @@ public class ControllerSach {
 
             @Override
             public Class<?> getColumnClass(int col) {
-                return col == 7 ? Boolean.class : String.class;
+                return col == 6 ? Boolean.class : String.class;
             }
         };
-        //lay danh sach khach hang
-        List<Sach> list = SachDAO.getList();
+        //lay danh sach sach
+        List<Sach> list = ConnectionSach.getList();
         Sach sach = null;
         Object[] obj;
         for (int i = 0; i < list.size(); i++) {
             sach = list.get(i);
-            obj = new Object[5];
+            obj = new Object[6];
             obj[0] = (i + 1);
             obj[1] = sach.getMaSach();
             obj[2] = sach.getTenSach();
             obj[3] = sach.getTacGia();
             obj[4] = sach.getGia();
             obj[5] = sach.getSoLuong();
-            
             model.addRow(obj);
 
             JTable table = new JTable(model);
@@ -152,11 +151,11 @@ public class ControllerSach {
                     for (int i = 0; i < list.size(); i++) {
                         sach.setMaSach((int) model.getValueAt(index, 1));
                         sach.setTenSach((String) model.getValueAt(index, 2));                       
-                        sach.setTacGia((String) model.getValueAt(index, 4));
-                        sach.setGia((Double) model.getValueAt(index, 5));
-                        sach.setSoLuong((int) model.getValueAt(index, 6));
+                        sach.setTacGia((String) model.getValueAt(index, 3));
+                        sach.setGia(Double.parseDouble(model.getValueAt(index, 4).toString()));
+                        sach.setSoLuong(Integer.parseInt(model.getValueAt(index, 5).toString()));
                     }
-                    int row = ModelSach.insert(sach);
+                    int row = ModelSach.createOrUpdate(sach);
                     if (row > 0) {
                         jlbMsg.setText("Sua thanh cong!");
                     } else {
@@ -178,8 +177,8 @@ public class ControllerSach {
                             Sach sach = new Sach();
                             sach.setTenSach(jtfTenSach.getText());
                             sach.setTacGia(jtfTacGia.getText());
-                            sach.setGia(0);
-                            sach.setSoLuong(0);                          
+                            sach.setGia(Double.parseDouble(jtfGia.getText()));
+                            sach.setSoLuong(Integer.parseInt(jtfSoLuong.getText()));                          
                             list.add(sach);
                             
                             int row = ModelSach.insert(sach);
@@ -193,12 +192,11 @@ public class ControllerSach {
                                 }
                                 // Tai lai table moi
 
-                                List<Sach> list = SachDAO.getList();
+                                List<Sach> list = ConnectionSach.getList();
                                 Object[] obj;
                                 for (int i = 0; i < list.size(); i++) {
 
                                     sach = list.get(i);
-                                    obj = new Object[6];
                                     obj = new Object[6];
                                     obj[0] = (i + 1);
                                     obj[1] = sach.getMaSach();
@@ -222,8 +220,8 @@ public class ControllerSach {
                     int dia = JOptionPane.showConfirmDialog(null, "Ban co muon xoa khong?", "Thong bao",
                             JOptionPane.YES_NO_OPTION);
                     if (dia == JOptionPane.YES_OPTION) {
-                        int id = (int) model.getValueAt(table.getSelectedRow(), -1);
-                        int row = ModelKhachHang.delete(id);
+                        int id = Integer.parseInt(model.getValueAt(table.getSelectedRow(), 1).toString());
+                        int row = ModelSach.delete(id);
                         if (row > 0) {
                             jlbMsg.setText("Xoa thanh cong " + row + " dong!");
 
@@ -232,13 +230,12 @@ public class ControllerSach {
                                 model.removeRow(0);
                             }
                             // Tai lai table moi
-                            List<Sach> list = SachDAO.getList();
+                            List<Sach> list = ConnectionSach.getList();
                             Sach sach = null;
                             Object[] obj;
                             for (int i = 0; i < list.size(); i++) {
 
                                 sach = list.get(i);
-                                obj = new Object[6];
                                 obj = new Object[6];
                                 obj[0] = (i + 1);
                                 obj[1] = sach.getMaSach();
@@ -249,7 +246,7 @@ public class ControllerSach {
                                 model.addRow(obj);
                             }
                         } else {
-                            jlbMsg.setText("Them khong thanh cong!");
+                            jlbMsg.setText("Xoa khong thanh cong!");
                         }
                     }
                 }
@@ -257,166 +254,3 @@ public class ControllerSach {
       }
    }
 }
-
-//    public void setViewandEvent(Sach sach){
-//        this.sach = sach;
-//        
-//        jtfMaSach.setText(  " "+sach.getMaSach());
-//        jtfTenSach.setText(sach.getTenSach());
-//        jtfTacGia.setText(sach.getTacGia());
-//        jtfGia.setText (" "+sach.getGia());
-//        jtfSoLuong.setText(" "+sach.getSoLuong());
-//    
-//        
-//          btnSubmit.addMouseListener(new MouseAdapter(){
-//            
-//            public void mouseClicked(MouseEvent e){
-//                if(jtfTenSach.getText().isEmpty()){
-//                    JOptionPane.showMessageDialog(btnSubmit, "Vui lòng nhập thông tin sách ");
-//                        
-//               
-//                }else{
-//                    sach.setTenSach(jtfTenSach.getText().trim());
-//                    sach.setTacGia(jtfTacGia.getText());
-//                    sach.setGia(0);
-//                    sach.setSoLuong(0);
-//                    
-//                    int lastID = ms.createOrUpdate(sach);
-//                    if(lastID >0){
-//                        sach.setMaSach(lastID);
-//                        jtfMaSach.setText( " "+ lastID);
-//                        int ref  = JOptionPane.showConfirmDialog(btnSubmit,"Bạn có muốn lưu ?", "Lưu", JOptionPane.YES_NO_OPTION);
-//                        if(ref == JOptionPane.YES_OPTION)
-//                            JOptionPane.showMessageDialog(btnSubmit, "Cập nhập thành công  ");
-//                       
-//    
-//                    }
-//                }
-//            }
-//            public void mouseEntered(MouseEvent e){
-//                 btnSubmit.setBackground(new Color(0,200,83));
-//            }
-//            
-//            public void mouseExited(MouseEvent e){
-//                btnSubmit.setBackground(new Color(100,221,23));
-//            }
-//        });
-//        
-//           btnXoa.addMouseListener(new MouseAdapter(){
-//            
-//            public void mouseClicked(MouseEvent e){
-//                if(jtfMaSach.getText().isEmpty()){
-//                    JOptionPane.showMessageDialog(btnXoa, "Vui lòng nhập mã sách ");
-//                    
-//                 }else{
-//                    int lastID = ms.delete(sach.getMaSach());
-//                    if(lastID >0){
-//                        sach.setMaSach(lastID);
-//                        jtfMaSach.setText( " "+ lastID);
-//                        int ref = JOptionPane.showConfirmDialog(btnXoa, "Bạn có muốn xóa ?", "Xóa", JOptionPane.YES_NO_OPTION);
-//                        
-//                        if(ref == JOptionPane.YES_OPTION){
-//                         JOptionPane.showMessageDialog(btnXoa, "Xóa thành công  ");
-//                         
-//                        }
-//                        if(ref == JOptionPane.NO_OPTION){
-//                        JOptionPane.showMessageDialog(btnXoa, "No selected");
-//                        }
-//                        
-//                        
-//                              
-//                    }
-//                
-//                 }
-//            }
-//            @Override
-//             public void mouseEntered(MouseEvent e){
-//                 btnXoa.setBackground(new Color(0,200,83));
-//            }
-//            
-//            public void mouseExited(MouseEvent e){
-//                btnXoa.setBackground(new Color(100,221,23));
-//            }
-//        });
-//     }
-//      
-//    }
-////     public void setEvent(){
-////        btnSubmit.addMouseListener(new MouseAdapter(){
-////            
-////            public void mouseClicked(MouseEvent e){
-////                if(jtfTenSach.getText().isEmpty()){
-////                    JOptionPane.showMessageDialog(btnSubmit, "Vui lòng nhập thông tin sách ");
-////                        
-////               
-////                }else{
-////                    sach.setTenSach(jtfTenSach.getText().trim());
-////                    sach.setTacGia(jtfTacGia.getText());
-////                    sach.setGia(0);
-////                    sach.setSoLuong(0);
-////                    
-////                    int lastID = ms.createOrUpdate(sach);
-////                    if(lastID >0){
-////                        sach.setMaSach(lastID);
-////                        jtfMaSach.setText( " "+ lastID);
-////                        int ref  = JOptionPane.showConfirmDialog(btnSubmit,"Bạn có muốn lưu ?", "Lưu", JOptionPane.YES_NO_OPTION);
-////                        if(ref == JOptionPane.YES_OPTION)
-////                            JOptionPane.showMessageDialog(btnSubmit, "Cập nhập thành công  ");
-////                       
-////    
-////                    }
-////                }
-////            }
-////            public void mouseEntered(MouseEvent e){
-////                 btnSubmit.setBackground(new Color(0,200,83));
-////            }
-////            
-////            public void mouseExited(MouseEvent e){
-////                btnSubmit.setBackground(new Color(100,221,23));
-////            }
-////        });
-////        
-////       
-////    
-////
-////}
-////     public void setEventDE(){
-////          btnXoa.addMouseListener(new MouseAdapter(){
-////            
-////            public void mouseClicked(MouseEvent e){
-////                if(jtfMaSach.getText().isEmpty()){
-////                    JOptionPane.showMessageDialog(btnXoa, "Vui lòng nhập mã sách ");
-////                    
-////                 }else{
-////                    int lastID = ms.delete(sach.getMaSach());
-////                    if(lastID >0){
-////                        sach.setMaSach(lastID);
-////                        jtfMaSach.setText( " "+ lastID);
-////                        int ref = JOptionPane.showConfirmDialog(btnXoa, "Bạn có muốn xóa ?", "Xóa", JOptionPane.YES_NO_OPTION);
-////                        
-////                        if(ref == JOptionPane.YES_OPTION){
-////                         JOptionPane.showMessageDialog(btnXoa, "Xóa thành công  ");
-////                         
-////                        }
-////                        if(ref == JOptionPane.NO_OPTION){
-////                        JOptionPane.showMessageDialog(btnXoa, "No selected");
-////                        }
-////                        
-////                        
-////                              
-////                    }
-////                
-////                 }
-////            }
-////            @Override
-////             public void mouseEntered(MouseEvent e){
-////                 btnXoa.setBackground(new Color(0,200,83));
-////            }
-////            
-////            public void mouseExited(MouseEvent e){
-////                btnXoa.setBackground(new Color(100,221,23));
-////            }
-////        });
-////     }
-////}
-////        

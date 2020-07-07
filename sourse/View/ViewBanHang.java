@@ -62,14 +62,14 @@ public class ViewBanHang extends JPanel {
 		JLabel lblNewLabel = new JLabel("Khach hang");
 		panel_1.add(lblNewLabel);
 		
-		JComboBox cbbKH = new JComboBox<KhachHang>();
-		panel_1.add(cbbKH);
+		JComboBox cbKH = new JComboBox<KhachHang>();
+		panel_1.add(cbKH);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nhan vien");
 		panel_1.add(lblNewLabel_1);
 		
-		JComboBox cbbNV = new JComboBox<User>();
-		panel_1.add(cbbNV);
+		JComboBox cbNV = new JComboBox<User>();
+		panel_1.add(cbNV);
 		
 		JLabel lblNewLabel_2 = new JLabel("Ngay HD");
 		panel_1.add(lblNewLabel_2);
@@ -98,7 +98,7 @@ public class ViewBanHang extends JPanel {
 //		lbTB.setForeground(Color.RED);
 		panel_1.add(lbTB);
 
-		ControllerBanHang ctl = new ControllerBanHang(pnSP,tfSearch,pnCTHD,btDelete,cbbNV,cbbKH,dcNgayHD,btAdd,btOut,tfTT,lbTB,tfMaHD);
+		ControllerBanHang ctl = new ControllerBanHang(pnSP,tfSearch,pnCTHD,btDelete,cbNV,cbKH,dcNgayHD,btAdd,btOut,tfTT,lbTB,tfMaHD);
 		ctl.setViewAndEvent();
 	}
 }

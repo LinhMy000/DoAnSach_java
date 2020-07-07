@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import Model.ModelHoaDon;
@@ -27,10 +22,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-/**
- *
- * @author Huong_Nho_UIT
- */
 public class ControllerHoaDon {
 
     private JPanel viewHoaDon;
@@ -117,26 +108,21 @@ public class ControllerHoaDon {
             public void changedUpdate(DocumentEvent e) {
             }
         });
-        //hien thi chi tiet hoa don khi chon model hoa don
-        DefaultTableModel modelCTHD = new DefaultTableModel(new String[]{"Ma HD", "Ma Sach", "So Luong", "Thanh Tien"}, 0) {
-            @Override
-            public boolean isCellEditable(int row, int col) {
-                return (col == 3);
-            }
 
-            @Override
-            public Class<?> getColumnClass(int col) {
-                return col == 4 ? Boolean.class : String.class;
-            }
-        };
+        //hien thi chi tiet hoa don khi chon model hoa don
+        DefaultTableModel modelCTHD = new DefaultTableModel(new String[]{"Ma HD", "Ma Sach", "So Luong", "Thanh Tien"}, 0);
         tableSP.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2 && tableSP.getSelectedRow() != -1) {
-                    int a = tableSP.getSelectedRow();
-                    // them vao table cthd
+                    while (modelCTHD.getRowCount() > 0) {
+                        modelCTHD.removeRow(0);
+                    }
+                    
+                    int id = Integer.parseInt(modelSP.getValueAt(tableSP.getSelectedRow(), 1).toString());
 
-                   List<CTHD> list = ModelHoaDon.getCTHDs(a);
+                    // them vao table cthd
+                    List<CTHD> list = ModelHoaDon.getCTHDs(id);
                     CTHD cthd = null;
                     Object[] obj;
                     for (int i = 0; i < list.size(); i++) {
@@ -152,7 +138,7 @@ public class ControllerHoaDon {
                         obj[3] = cthd.getThanhTien();
 
                         modelCTHD.addRow(obj);
-                        modelSP.removeRow(a);
+//                        modelSP.removeRow(id);
                     }
                 }
             }

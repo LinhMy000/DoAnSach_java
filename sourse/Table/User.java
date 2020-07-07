@@ -8,15 +8,6 @@ public class User {
 	private boolean tinhTrang;
 	private boolean quyen;
 	
-	public User() {
-		id = 0;
-		taiKhoan = null;
-		matKhau = null;
-		hoTen = null;
-		tinhTrang = false;
-		quyen = false;
-	}
-	
 	public int getId() {
 		return id;
 	}	
@@ -53,9 +44,9 @@ public class User {
 	public void setQuyen(boolean quyen) {
 		this.quyen = quyen;
 	}
+@Override
+    public String toString() {
+        return  hoTen ;
+    }
 	
-	@Override
-	public String toString() {
-		return hoTen;
-	}
 }

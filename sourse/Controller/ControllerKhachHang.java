@@ -6,7 +6,7 @@
 package Controller;
 
 import Connection.ConnectionUser;
-import Connection.KhachHangDAO;
+import Connection.ConnectionKhachHang;
 import Model.ModelKhachHang;
 import Model.ModelUser;
 import Table.KhachHang;
@@ -96,7 +96,7 @@ public class ControllerKhachHang {
             }
         };
         //lay danh sach khach hang
-        List<KhachHang> list = KhachHangDAO.getList();
+        List<KhachHang> list = ConnectionKhachHang.getList();
         KhachHang khachhang = null;
         Object[] obj;
         for (int i = 0; i < list.size(); i++) {
@@ -209,7 +209,7 @@ public class ControllerKhachHang {
                                 }
                                 // Tai lai table moi
 
-                                List<KhachHang> list = KhachHangDAO.getList();
+                                List<KhachHang> list = ConnectionKhachHang.getList();
                                 Object[] obj;
                                 for (int i = 0; i < list.size(); i++) {
 
@@ -249,7 +249,7 @@ public class ControllerKhachHang {
                                 model.removeRow(0);
                             }
                             // Tai lai table moi
-                            List<KhachHang> list = KhachHangDAO.getList();
+                            List<KhachHang> list = ConnectionKhachHang.getList();
                             KhachHang khachhang = null;
                             Object[] obj;
                             for (int i = 0; i < list.size(); i++) {

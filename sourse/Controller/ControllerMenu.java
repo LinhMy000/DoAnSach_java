@@ -8,14 +8,14 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import Model.ModelMenu;
-import View.HoaDonJpanel;
-import View.ViewHoaDon1;
+import View.ViewBanHang;
+import View.ViewHoaDon;
 import View.ViewHoaDon;
 import View.ViewKhachHang1;
-import View.ViewSach;
+import View.ViewSach1;
 import View.ViewThongKe;
 import View.ViewTrangChu;
-import View.ViewUser;
+import View.ViewUser1;
 
 public class ControllerMenu {
 	private JPanel pnView;
@@ -29,7 +29,7 @@ public class ControllerMenu {
 	public void setView(JLabel lbMenu) {
 		kindMenu = "Trang chu";
 		lbMenu.setOpaque(true);
-		lbMenu.setBackground(Color.orange);
+		lbMenu.setBackground(new Color(61,61,107));
 	    
 	    JPanel node = new ViewTrangChu();
 	    pnView.removeAll();
@@ -43,11 +43,11 @@ public class ControllerMenu {
 		for (ModelMenu item : listMenu) {
 			if(item.getKind().equalsIgnoreCase(kind)) {
 				item.getLabel().setOpaque(true);
-				item.getLabel().setBackground(Color.orange);
+				item.getLabel().setBackground(new Color(61,61,107));
 			}
 			else {
 				item.getLabel().setOpaque(true);
-				item.getLabel().setBackground(new Color(0, 191, 255));
+				item.getLabel().setBackground(new Color(23,35,55));
 			}
 		} 
 	}
@@ -67,10 +67,9 @@ public class ControllerMenu {
 	    	 switch (kind) {
 	               case "Trang chu": node = new ViewTrangChu(); break;
                        case "Khach hang": node = new ViewKhachHang1(); break;
-
-	               case "Sach": node = new ViewSach(); break;
-	               case "Hoa don": node = new ViewHoaDon1(); break;
-//                       case "Hoa don": node = new HoaDonJpanel(); break;
+	               case "Sach": node = new ViewSach1(); break;
+	               case "Hoa don": node = new ViewHoaDon(); break;
+                       case "Ban hang": node = new ViewBanHang(); break;
 	               case "Thong ke du lieu": node = new ViewThongKe(); break;
 	               default: break;
 	         }
@@ -86,14 +85,14 @@ public class ControllerMenu {
 	     public void mousePressed(MouseEvent e) {
 	          kindMenu = kind;
 	          label.setOpaque(true);
-	          label.setBackground(Color.orange);
+	          label.setBackground(new Color(61,61,107));
 	     }
 
 	     @Override
 	     public void mouseEntered(MouseEvent e) {
 	    	 if (!kindMenu.equalsIgnoreCase(kind)) {
 	    		 label.setOpaque(true);
-	    		 label.setBackground(Color.green);
+	    		 label.setBackground(new Color(50,69,90));
 	    	 }
 	     }
 
@@ -101,11 +100,11 @@ public class ControllerMenu {
 	     public void mouseExited(MouseEvent e) {
 	         if (!kindMenu.equalsIgnoreCase(kind)) {
 	        	 label.setOpaque(true);
-	        	 label.setBackground(new Color(0, 191, 255));
+	        	 label.setBackground(new Color(23,35,55));
 	         }
 	         else {
 	        	 label.setOpaque(true);
-	        	 label.setBackground(Color.orange);
+	        	 label.setBackground(new Color(61,61,107));
 	         }
 	     }
 
@@ -113,7 +112,7 @@ public class ControllerMenu {
 		public void mouseReleased(MouseEvent e) {
 			if (!kindMenu.equalsIgnoreCase(kind)) {
 	        	 label.setOpaque(true);
-	        	 label.setBackground(new Color(0, 191, 255));
+	        	 label.setBackground(new Color(23,35,55));
 	         }	
 		}
 	}
@@ -132,11 +131,11 @@ public class ControllerMenu {
 	    	 switch (kind) {
 	               case "Trang chu": node = new ViewTrangChu(); break;
                        case "Khach hang": node = new ViewKhachHang1(); break;
-	               case "Sach": node = new ViewSach(); break;
-	               case "Hoa don": node = new ViewHoaDon1(); break;
-//                       case "Hoa don": node = new HoaDonJpanel(); break;
+	               case "Sach": node = new ViewSach1(); break;
+	               case "Hoa don": node = new ViewHoaDon(); break;
+                       case "Ban hang": node = new ViewBanHang(); break;
 	               case "Thong ke du lieu": node = new ViewThongKe(); break;
-	               case "User": node = new ViewUser(); break;
+	               case "User": node = new ViewUser1(); break;
 	               default: break;
 	         }
 	    	 pnView.removeAll();
@@ -151,14 +150,14 @@ public class ControllerMenu {
 	     public void mousePressed(MouseEvent e) {
 	          kindMenu = kind;
 	          label.setOpaque(true);
-	          label.setBackground(Color.orange);
+	          label.setBackground(new Color(61,61,107));
 	     }
 
 	     @Override
 	     public void mouseEntered(MouseEvent e) {
 	    	 if (!kindMenu.equalsIgnoreCase(kind)) {
 	    		 label.setOpaque(true);
-	    		 label.setBackground(Color.green);
+	    		 label.setBackground(new Color(50,69,90));
 	    	 }
 	     }
 
@@ -166,11 +165,11 @@ public class ControllerMenu {
 	     public void mouseExited(MouseEvent e) {
 	         if (!kindMenu.equalsIgnoreCase(kind)) {
 	        	 label.setOpaque(true);
-	        	 label.setBackground(new Color(0, 191, 255));
+	        	 label.setBackground(new Color(23,35,55));
 	         }
 	         else {
 	        	 label.setOpaque(true);
-	        	 label.setBackground(Color.orange);
+	        	 label.setBackground(new Color(61,61,107));
 	         }
 	     }
 
@@ -178,7 +177,7 @@ public class ControllerMenu {
 		public void mouseReleased(MouseEvent e) {
 			if (!kindMenu.equalsIgnoreCase(kind)) {
 	        	 label.setOpaque(true);
-	        	 label.setBackground(new Color(0, 191, 255));
+	        	 label.setBackground(new Color(23,35,55));
 	         }	
 		}
 	}

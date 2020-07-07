@@ -138,7 +138,7 @@ public class ControllerDangNhap {
                 	dialog.setTitle("SIGN UP");
                 	pnView.removeAll();
 	       	    	pnView.setLayout(new BorderLayout());
-	       	    	pnView.add(new ViewDangKy(dialog));
+//	       	    	pnView.add(new ViewDangKy(dialog));
 	       	    	pnView.validate();
 	       	    	pnView.repaint();
 				} 

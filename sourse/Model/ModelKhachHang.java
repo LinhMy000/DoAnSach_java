@@ -6,7 +6,7 @@
 package Model;
 
 import Connection.ConnectionDB;
-import Connection.KhachHangDAO;
+import Connection.ConnectionKhachHang;
 import Table.KhachHang;
 import com.mysql.jdbc.Statement;
 import java.sql.Connection;
@@ -24,57 +24,25 @@ import java.util.List;
 public class ModelKhachHang {
     
     private static Connection con = ConnectionDB.getConnection();
-        KhachHangDAO khd = null;
-    
-     public KhachHang login(String maKH, String hoTen) {
-        KhachHang khachhang = null;
-        String sql = "SELECT * FROM khachhang WHERE makh LIKE ? AND hoten LIKE ?";
+        ConnectionKhachHang khd = null;
+    public static String getTenKH(int makh){
+		String name = null;
+		String sql = "select hoten from khachhang where makh = " + makh;
         try {
-           
-            PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql);
-            ps.setString(1, maKH);
-            ps.setString(2, hoTen);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                khachhang = new KhachHang();
-                khachhang.setMaKH(rs.getInt("makh"));
-                khachhang.setHoTen(rs.getString("hoten"));
-                khachhang.setNgaySinh(rs.getDate("ngaysinh"));
-                khachhang.setSdt(rs.getString("sdt"));
-                khachhang.setDiaChi(rs.getString("diachi"));
-                khachhang.setDiem(rs.getInt("diem"));
-
+            Statement ps = (Statement) con.createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            while (rs.next()) {
+            	name = rs.getString(1);
             }
             ps.close();
-            con.close();
-            return khachhang;
-        } catch (Exception e) {
-            System.out.println("Loi khach hang!");
-            e.printStackTrace();
+        } 
+        catch (Exception e) {
+            System.out.println("Loi tim ten khach hang !");
+        	e.printStackTrace();
         }
-        return null;
-    }
+        return name;
+	}
 
- 
-     public static int register(String hoTen, Date ngaySinh, String sdt, String diaChi) {
-        String sql = "insert into khachhang values(null,?,?,?,?,0)";
-        try {
-           
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, hoTen);
-            ps.setDate(2, ngaySinh);
-            ps.setString(3, sdt);
-            ps.setString(4, diaChi);
-            int row = ps.executeUpdate();
-            ps.close();
-            con.close();
-            return row;
-        } catch (Exception e) {
-            System.out.println("Loi in khach hang!");
-            e.printStackTrace();
-        }
-        return 0;
-    }
 
     public List<KhachHang> getList() {
         return khd.getList();

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Table.User;
-import qlhv.model.HocVien;
+
 
 public class ConnectionUser {
 	private static Connection con = ConnectionDB.getConnection();
@@ -58,7 +58,7 @@ public class ConnectionUser {
 		return 0;
 	}
 	
-	public List<User> getUsers(){
+	public static List<User> getUsers(){
 		List<User> list = new ArrayList<>();
 		String sql = "select * from user";
         try {

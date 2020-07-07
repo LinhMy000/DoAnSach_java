@@ -1,6 +1,7 @@
 package Model;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class ModelMenu {
 	private String kind;
