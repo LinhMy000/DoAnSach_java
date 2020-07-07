@@ -11,11 +11,11 @@ import Model.ModelMenu;
 import View.ViewBanHang;
 import View.ViewHoaDon;
 import View.ViewHoaDon;
-import View.ViewKhachHang1;
-import View.ViewSach1;
+import View.ViewKhachHang;
+import View.ViewSach;
 import View.ViewThongKe;
 import View.ViewTrangChu;
-import View.ViewUser1;
+import View.ViewUser;
 
 public class ControllerMenu {
 	private JPanel pnView;
@@ -66,8 +66,8 @@ public class ControllerMenu {
 	     public void mouseClicked(MouseEvent e) {
 	    	 switch (kind) {
 	               case "Trang chu": node = new ViewTrangChu(); break;
-                       case "Khach hang": node = new ViewKhachHang1(); break;
-	               case "Sach": node = new ViewSach1(); break;
+                       case "Khach hang": node = new ViewKhachHang(); break;
+	               case "Sach": node = new ViewSach(); break;
 	               case "Hoa don": node = new ViewHoaDon(); break;
                        case "Ban hang": node = new ViewBanHang(); break;
 	               case "Thong ke du lieu": node = new ViewThongKe(); break;
@@ -130,12 +130,12 @@ public class ControllerMenu {
 	     public void mouseClicked(MouseEvent e) {
 	    	 switch (kind) {
 	               case "Trang chu": node = new ViewTrangChu(); break;
-                       case "Khach hang": node = new ViewKhachHang1(); break;
-	               case "Sach": node = new ViewSach1(); break;
+                       case "Khach hang": node = new ViewKhachHang(); break;
+	               case "Sach": node = new ViewSach(); break;
 	               case "Hoa don": node = new ViewHoaDon(); break;
                        case "Ban hang": node = new ViewBanHang(); break;
 	               case "Thong ke du lieu": node = new ViewThongKe(); break;
-	               case "User": node = new ViewUser1(); break;
+	               case "User": node = new ViewUser(); break;
 	               default: break;
 	         }
 	    	 pnView.removeAll();

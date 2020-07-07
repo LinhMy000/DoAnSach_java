@@ -11,12 +11,12 @@ import Table.KhachHang;
  *
  * @author Huong_Nho_UIT
  */
-public class ViewKhachHang1 extends javax.swing.JPanel {
+public class ViewKhachHang extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewKhachHang1
      */
-    public ViewKhachHang1() {
+    public ViewKhachHang() {
         initComponents();
         ControllerKhachHang controller= new ControllerKhachHang( btnThem, btnXoa, jtfMaKH,jtfTenKH, jdcNgaySinh,jtfSoDT, jtfDiaChi, jtfDiem, jlbThongBao, jpnRoot, jtfSearch);
         

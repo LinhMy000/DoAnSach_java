@@ -6,7 +6,6 @@
 package Controller;
 
 import Connection.ConnectionUser;
-import Connection.ConnectionKhachHang;
 import Model.ModelKhachHang;
 import Model.ModelUser;
 import Table.KhachHang;
@@ -24,8 +23,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-//import java.sql.Date;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -96,7 +94,7 @@ public class ControllerKhachHang {
             }
         };
         //lay danh sach khach hang
-        List<KhachHang> list = ConnectionKhachHang.getList();
+        List<KhachHang> list = ModelKhachHang.getList();
         KhachHang khachhang = null;
         Object[] obj;
         for (int i = 0; i < list.size(); i++) {
@@ -184,15 +182,15 @@ public class ControllerKhachHang {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (jtfTenKH.getText().length() == 0) {
-                        jlbThongBao.setText("Vui long dien day du thong tin!");
+                        jlbThongBao.setText("Vui lòng điền đầy đủ thông tin!");
                     } else {
-                        int dia = JOptionPane.showConfirmDialog(null, "Ban co muon them khong?", "Thong bao",
+                        int dia = JOptionPane.showConfirmDialog(null, "Bạn có thông báo không?", "Thông báo",
                                 JOptionPane.YES_NO_OPTION);
                         if (dia == JOptionPane.YES_OPTION) {
 
                             KhachHang khachhang = new KhachHang();
                             khachhang.setHoTen(jtfTenKH.getText());
-                            khachhang.setNgaySinh(jdcNgaySinh.getDate());
+                            khachhang.setNgaySinh(new java.sql.Date(jdcNgaySinh.getDate().getTime()));
                             khachhang.setDiaChi(jtfDiaChi.getText());
                             khachhang.setSdt(jtfSoDT.getText());
                             khachhang.setDiem(0);
@@ -200,7 +198,7 @@ public class ControllerKhachHang {
                             
                             int row = ModelKhachHang.insert(khachhang);
                             if (row != 0) {
-                                jlbThongBao.setText("Them thanh cong!");
+                                jlbThongBao.setText("Thêm thành công!");
                                 jtfTenKH.setText(null);
 
 //                                 Xoa table cu
@@ -209,12 +207,11 @@ public class ControllerKhachHang {
                                 }
                                 // Tai lai table moi
 
-                                List<KhachHang> list = ConnectionKhachHang.getList();
+                                List<KhachHang> list = ModelKhachHang.getList();
                                 Object[] obj;
                                 for (int i = 0; i < list.size(); i++) {
 
                                     khachhang = list.get(i);
-                                    obj = new Object[7];
                                     obj = new Object[7];
                                     obj[0] = (i + 1);
                                     obj[1] = khachhang.getMaKH();
@@ -226,7 +223,7 @@ public class ControllerKhachHang {
                                     model.addRow(obj);
                                 }
                             } else {
-                                jlbThongBao.setText("Them khong thanh cong!");
+                                jlbThongBao.setText("Thêm không thành công!");
                             }
                         }
                     }
@@ -236,26 +233,25 @@ public class ControllerKhachHang {
             btnXoa.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    int dia = JOptionPane.showConfirmDialog(null, "Ban co muon xoa khong?", "Thong bao",
+                    int dia = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa không?", "Thông báo",
                             JOptionPane.YES_NO_OPTION);
                     if (dia == JOptionPane.YES_OPTION) {
                         int id = (int) model.getValueAt(table.getSelectedRow(), -1);
                         int row = ModelKhachHang.delete(id);
                         if (row > 0) {
-                            jlbThongBao.setText("Xoa thanh cong " + row + " dong!");
+                            jlbThongBao.setText("Xóa thành công " + row + " dòng!");
 
                             // Xoa table cu
                             while (model.getRowCount() > 0) {
                                 model.removeRow(0);
                             }
                             // Tai lai table moi
-                            List<KhachHang> list = ConnectionKhachHang.getList();
+                            List<KhachHang> list = ModelKhachHang.getList();
                             KhachHang khachhang = null;
                             Object[] obj;
                             for (int i = 0; i < list.size(); i++) {
 
                                 khachhang = list.get(i);
-                                obj = new Object[7];
                                 obj = new Object[7];
                                 obj[0] = (i + 1);
                                 obj[1] = khachhang.getMaKH();
@@ -267,7 +263,7 @@ public class ControllerKhachHang {
                                 model.addRow(obj);
                             }
                         } else {
-                            jlbThongBao.setText("Them khong thanh cong!");
+                            jlbThongBao.setText("Thêm không thành công!");
                         }
                     }
                 }
@@ -275,77 +271,4 @@ public class ControllerKhachHang {
       }
    }
 }
-//    public void setEvent() {
-//        btnThem.addMouseListener(new MouseAdapter() {
-//
-//            public void mouseClicked(MouseEvent e) {
-//                if (jtfTenKH.getText().isEmpty()) {
-//                    JOptionPane.showMessageDialog(btnThem, "Vui lòng nhập thông tin khách hàng ");
-//
-//                } else {
-//                    khachhang.setHoTen(jtfTenKH.getText().trim());
-//
-//                    khachhang.setNgaySinh((Date) jdcNgaySinh.getDate());
-//                    khachhang.setSdt(jtfSoDT.getText());
-//                    khachhang.setDiaChi(jtfDiaChi.getText());
-//                    khachhang.setDiem(0);
-//
-//                    int lastID = khd.createOrUpdate(khachhang);
-//                    if (lastID > 0) {
-//                        khachhang.setMaKH(lastID);
-//                        jtfMaKH.setText(" " + lastID);
-//                        int ref = JOptionPane.showConfirmDialog(btnThem, "Bạn có muốn lưu ?", "Lưu", JOptionPane.YES_NO_OPTION);
-//                        if (ref == JOptionPane.YES_OPTION) {
-//                            JOptionPane.showMessageDialog(btnThem, "Cập nhập thành công  ");
-//                        }
-//
-//                    }
-//                }
-//            }
-//
-//            public void mouseEntered(MouseEvent e) {
-//                btnThem.setBackground(new Color(0, 200, 83));
-//            }
-//
-//            public void mouseExited(MouseEvent e) {
-//                btnThem.setBackground(new Color(100, 221, 23));
-//            }
-//        });
-//
-//    }
-//
-//    public void setEventDE() {
-//        btnXoa.addMouseListener(new MouseAdapter() {
-//
-//            public void mouseClicked(MouseEvent e) {
-//                if (jtfMaKH.getText().isEmpty()) {
-//                    JOptionPane.showMessageDialog(btnXoa, "Vui lòng nhập mã khách hàng ");
-//
-//                } else {
-//                    int lastID = khd.DeLeTe(khachhang);
-//                    if (lastID > 0) {
-//                        khachhang.setMaKH(lastID);
-//                        jtfMaKH.setText(" " + lastID);
-//                        int ref = JOptionPane.showConfirmDialog(btnXoa, "Bạn có muốn xóa ?", "Xóa", JOptionPane.YES_NO_OPTION);
-//
-//                        if (ref == JOptionPane.YES_OPTION) {
-//                            JOptionPane.showMessageDialog(btnXoa, "Xóa thành công  ");
-//
-//                        }
-//
-//                    }
-//
-//                }
-//            }
-//
-//            @Override
-//            public void mouseEntered(MouseEvent e) {
-//                btnXoa.setBackground(new Color(0, 200, 83));
-//            }
-//
-//            public void mouseExited(MouseEvent e) {
-//                btnXoa.setBackground(new Color(100, 221, 23));
-//            }
-//        });
-//    }
-
+//   

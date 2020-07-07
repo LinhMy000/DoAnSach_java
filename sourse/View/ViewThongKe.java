@@ -20,12 +20,12 @@ public class ViewThongKe extends JPanel {
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
 		
-		JLabel lbTK = new JLabel("Thong ke");
+		JLabel lbTK = new JLabel("Thống kê ");
 		lbTK.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel_1.add(lbTK);
 		
 		JComboBox cbbThongKe = new JComboBox();
-		cbbThongKe.setModel(new DefaultComboBoxModel(new String[] {"Sach ban chay nhat", "Tac gia duoc yeu thich nhat", "Doanh thu theo thang"}));
+		cbbThongKe.setModel(new DefaultComboBoxModel(new String[] {"Sách bán chạy nhất", "Tác giả được yêu thích nhất", "Doanh thu theo tháng"}));
 		cbbThongKe.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel_1.add(cbbThongKe);
 //		cbbThongKe.setPreferredSize(new Dimension(440, 30));

@@ -76,7 +76,7 @@ public class ControllerHoaDon {
 
         JScrollPane scrollSP = new JScrollPane();
         scrollSP.getViewport().add(tableSP);
-        scrollSP.setPreferredSize(new Dimension(1250, 300));
+        scrollSP.setPreferredSize(new Dimension(1150, 300));
         viewHoaDon.removeAll();
         viewHoaDon.setLayout(new CardLayout());
         viewHoaDon.add(scrollSP);
@@ -127,18 +127,14 @@ public class ControllerHoaDon {
                     Object[] obj;
                     for (int i = 0; i < list.size(); i++) {
                         cthd = list.get(i);
-                        obj = new Object[4];
-//                        obj[0] = modelCTHD.getValueAt(i, 0);
-//                        obj[1] = modelCTHD.getValueAt(i, 1);
-//                        obj[2] = modelCTHD.getValueAt(i, 2);
-//                        obj[3] = modelCTHD.getValueAt(i, 3);
+                        obj = new Object[4];       
                         obj[0] = cthd.getMaHD();
                         obj[1] = cthd.getMaSach();
                         obj[2] = cthd.getSoLuong();
                         obj[3] = cthd.getThanhTien();
 
                         modelCTHD.addRow(obj);
-//                        modelSP.removeRow(id);
+                        modelSP.removeRow(id);
                     }
                 }
             }

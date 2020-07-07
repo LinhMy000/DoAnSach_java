@@ -1,6 +1,6 @@
 package Controller;
 
-import Connection.ConnectionKhachHang;
+
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -72,7 +72,7 @@ public class ControllerBanHang {
 
     public void setViewAndEvent() {
         //Hien thi combobox
-        List<KhachHang> listKH = ConnectionKhachHang.getList();
+        List<KhachHang> listKH =ModelKhachHang.getList();
         for (int i = 0; i < listKH.size(); i++) {
             cbKH.addItem(listKH.get(i));
         }

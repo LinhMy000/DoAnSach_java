@@ -5,12 +5,11 @@
  */
 package Controller;
 
-import Connection.ConnectionSach;
 import Model.ModelKhachHang;
 import Model.ModelSach;
 import Table.KhachHang;
 import Table.Sach;
-import View.ViewSach1;
+import View.ViewSach;
 import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -82,7 +81,7 @@ public class ControllerSach {
             }
         };
         //lay danh sach sach
-        List<Sach> list = ConnectionSach.getList();
+        List<Sach> list = ModelSach.getSachs();
         Sach sach = null;
         Object[] obj;
         for (int i = 0; i < list.size(); i++) {
@@ -192,7 +191,7 @@ public class ControllerSach {
                                 }
                                 // Tai lai table moi
 
-                                List<Sach> list = ConnectionSach.getList();
+                                List<Sach> list = ModelSach.getSachs();
                                 Object[] obj;
                                 for (int i = 0; i < list.size(); i++) {
 
@@ -230,7 +229,7 @@ public class ControllerSach {
                                 model.removeRow(0);
                             }
                             // Tai lai table moi
-                            List<Sach> list = ConnectionSach.getList();
+                            List<Sach> list = ModelSach.getSachs();
                             Sach sach = null;
                             Object[] obj;
                             for (int i = 0; i < list.size(); i++) {

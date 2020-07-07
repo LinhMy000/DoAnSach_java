@@ -6,10 +6,10 @@
 package Model;
 
 import Connection.ConnectionDB;
-import Connection.ConnectionKhachHang;
 import Table.KhachHang;
 import com.mysql.jdbc.Statement;
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,9 +22,10 @@ import java.util.List;
  * @author Huong_Nho_UIT
  */
 public class ModelKhachHang {
+   
     
     private static Connection con = ConnectionDB.getConnection();
-        ConnectionKhachHang khd = null;
+        
     public static String getTenKH(int makh){
 		String name = null;
 		String sql = "select hoten from khachhang where makh = " + makh;
@@ -44,8 +45,33 @@ public class ModelKhachHang {
 	}
 
 
-    public List<KhachHang> getList() {
-        return khd.getList();
+    public static List<KhachHang> getList() {
+       List<KhachHang> list = new ArrayList<>();
+        String sql = "SELECT * FROM khachhang";
+          
+        try {
+            Connection cons = ConnectionDB.getConnection();
+            PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                KhachHang khachhang = new KhachHang();
+                khachhang.setMaKH(rs.getInt("MaKH"));
+                khachhang.setHoTen(rs.getString("HoTen"));
+                khachhang.setNgaySinh(rs.getDate("NgaySinh"));
+                khachhang.setSdt(rs.getString("SDT"));
+                khachhang.setDiaChi(rs.getString("DiaChi"));
+                khachhang.setDiem(rs.getInt("Diem"));
+
+                list.add(khachhang);
+            }
+            ps.close();
+            cons.close();
+            
+        } catch (SQLException e) {
+            System.out.println("Loi lay ra danh sach khach hang!");
+            e.printStackTrace();
+        }
+        return list;
     }
     
 	public static int update(KhachHang khachhang) {
@@ -54,7 +80,7 @@ public class ModelKhachHang {
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
                         ps.setString(1, khachhang.getHoTen());
-                        ps.setDate(2, (Date) khachhang.getNgaySinh());
+                        ps.setDate(2, (java.sql.Date) khachhang.getNgaySinh());
                         ps.setString(3, khachhang.getSdt());
                         ps.setString(4, khachhang.getDiaChi());
                         ps.setInt(5,khachhang.getDiem());
@@ -62,7 +88,7 @@ public class ModelKhachHang {
 			ps.close();
 		} 
 		catch (Exception ex) {
-        	System.out.println("Loi update khach hang!");
+        	System.out.println("Lỗi update khách hàng!");
 			ex.printStackTrace();
 		}
 		return row;
@@ -72,9 +98,9 @@ public class ModelKhachHang {
         try {
             String sql = "INSERT INTO khachhang VALUES(null,?, ?, ?, ?, ?)ON DUPLICATE KEY  UPDATE hoten = VALUES(hoten), ngaysinh = VALUES(ngaysinh),sdt = VALUES(sdt),diachi = VALUES(diachi),diem= VALUES(diem);";
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-           
+//           new Date
             ps.setString(1, khachhang.getHoTen());
-            ps.setDate(2, new Date(khachhang.getNgaySinh().getTime()));
+            ps.setDate(2, new java.sql.Date(khachhang.getNgaySinh().getTime()));
             ps.setString(3, khachhang.getSdt());
             ps.setString(4, khachhang.getDiaChi());
             ps.setInt(5, khachhang.getDiem());
@@ -92,13 +118,14 @@ public class ModelKhachHang {
             ex.printStackTrace();
         }
         return 0;
-    }public static int insert(KhachHang khachhang) {
+    }
+        public static int insert(KhachHang khachhang) {
 		int row = 0;
         String sql = "insert into khachhang values(null,?,?,?,?,?)";
         try {
         	PreparedStatement ps = con.prepareStatement(sql);
                 ps.setString(1, khachhang.getHoTen());
-                ps.setDate(2, (Date) khachhang.getNgaySinh());
+                ps.setDate(2, new java.sql.Date (khachhang.getNgaySinh().getTime()));
                 ps.setString(3, khachhang.getSdt());
                 ps.setString(4, khachhang.getDiaChi());
                 ps.setInt(5, khachhang.getDiem());
