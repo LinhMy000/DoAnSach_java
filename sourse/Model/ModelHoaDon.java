@@ -36,7 +36,7 @@ public class ModelHoaDon {
             }
             ps.close();
         } catch (Exception e) {
-            System.out.println("Loi lay danh sach hoa don!");
+            System.out.println("Lỗi lấy danh sách hóa đơn!");
             e.printStackTrace();
         }
         return user;
@@ -60,7 +60,7 @@ public class ModelHoaDon {
             }
             ps.close();
         } catch (Exception e) {
-            System.out.println("Loi lay danh sach hoa don!");
+            System.out.println("Lỗi lấy danh sách hóa đơn!");
             e.printStackTrace();
         }
         return list;
@@ -83,7 +83,7 @@ public class ModelHoaDon {
             }
             ps.close();
         } catch (Exception e) {
-            System.out.println("Loi lay danh sach hoa don!");
+            System.out.println("Lỗi lấy danh sách hóa đơn!");
             e.printStackTrace();
         }
         return list;
@@ -116,10 +116,10 @@ public class ModelHoaDon {
                     insertCTHD(ct);
                 }
             } else {
-                System.out.println("Loi them hoa don!");
+                System.out.println("Lỗi thêm hóa đơn!");
             }
         } catch (Exception e) {
-            System.out.println("Loi them hoa don va cthd!");
+            System.out.println("Lỗi thêm hóa đơn và cthd!");
             e.printStackTrace();
         }
         return mahd;
@@ -140,7 +140,7 @@ public class ModelHoaDon {
 //				System.out.println("Them CTHD thanh cong !");
 //	        }
         } catch (Exception e) {
-            System.out.println("Loi them cthd!");
+            System.out.println("Lỗi thêm cthd!");
             e.printStackTrace();
         }
         return row;
@@ -169,7 +169,7 @@ public class ModelHoaDon {
             row = ps.executeUpdate();
             ps.close();
         } catch (Exception ex) {
-            System.out.println("Loi update cthd !");
+            System.out.println("Lỗi update cthd !");
             ex.printStackTrace();
         }
         return row;
@@ -183,7 +183,7 @@ public class ModelHoaDon {
             row = st.executeUpdate(sql);
             st.close();
         } catch (SQLException e) {
-            System.out.println("Loi delete cthd !");
+            System.out.println("Lỗi delete cthd !");
             e.printStackTrace();
         }
         return row;
@@ -192,24 +192,24 @@ public class ModelHoaDon {
     public static void xuatHD(int mahd) {
         try {
             FileWriter fw = new FileWriter("C:\\Users\\Huong_Nho_UIT\\Desktop\\TestXuatHD.txt");
-            fw.write("Welcome to BookStore! \n\n");
+            fw.write("Welcome to BookStore! \r\n");
 
             HoaDon h = getHD(mahd);
             SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
-            fw.write("Ngay: " + fm.format(h.getNgayhd()) + "\n");
-            fw.write("Khach hang: " + ModelKhachHang.getTenKH(h.getMakh()) + "\n");
-            fw.write("Nhan vien: " + ModelUser.getTenUser(h.getManv()) + "\n\n");
+            fw.write("Ngày: " + fm.format(h.getNgayhd()) + "\r\n");
+            fw.write("Khách Hàng: " + ModelKhachHang.getTenKH(h.getMakh()) + "\r\n");
+            fw.write("Nhân Viên: " + ModelUser.getTenUser(h.getManv()) + "\r\n");
 
-            fw.write("Ten sach \t\tSo luong \tThanh tien \n");
+            fw.write("Tên Sách \t\tSố Lượng \tThành Tiền \r\n");
             for (int i = 0; i < h.getCthd().size(); i++) {
                 fw.write(ModelSach.getSach(h.getCthd().get(i).getMaSach()).getTenSach() + "\t\t");
                 fw.write(h.getCthd().get(i).getSoLuong() + "\t\t");
-                fw.write(h.getCthd().get(i).getThanhTien() + "00 vnd \n");
+                fw.write(h.getCthd().get(i).getThanhTien() + "00 vnd \t");
             }
-            fw.write("\t\t\tTong cong: \t" + h.getTongTien() + "00 vnd");
+            fw.write("\r\nTổng cộng: \t" + h.getTongTien() + "00 vnd \t" );
             fw.close();
         } catch (Exception e) {
-            System.out.println("Loi xuat hd" + e);
+            System.out.println("Lỗi xuất hd" + e);
         }
         System.out.println("Success...");
     }

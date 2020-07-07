@@ -26,7 +26,7 @@ public class ModelUser {
             ps.close();
         } 
         catch (Exception e) {
-            System.out.println("Loi tim ten nhan vien !");
+            System.out.println("Lỗi tìm tên nhân viên !");
         	e.printStackTrace();
         }
         return name;
@@ -51,7 +51,7 @@ public class ModelUser {
             ps.close();
         } 
         catch (Exception e) {
-            System.out.println("Loi tai khoan!");
+            System.out.println("Lỗi tài khoản!");
         	e.printStackTrace();
         }
         return user;
@@ -69,7 +69,7 @@ public class ModelUser {
             ps.close();
 		} 
         catch (Exception e) {
-        	System.out.println("Loi dang ky tai khoan!");
+        	System.out.println("Lỗi đăng ký tài khoản!");
         	e.printStackTrace();
 		}
 		return row;
@@ -94,7 +94,7 @@ public class ModelUser {
             ps.close();
         } 
         catch (Exception e) {
-            System.out.println("Loi lay danh sach user!");
+            System.out.println("Lỗi danh sách user!");
         	e.printStackTrace();
         }
         return list;
@@ -115,7 +115,7 @@ public class ModelUser {
 			ps.close();
 		} 
 		catch (Exception ex) {
-        	System.out.println("Loi update tai khoan!");
+        	System.out.println("Lỗi update tài khoản!");
 			ex.printStackTrace();
 		}
 		return row;
@@ -130,7 +130,7 @@ public class ModelUser {
 			st.close();
 		}
 		catch (SQLException e) {
-        	System.out.println("Loi delete tai khoan!");
+        	System.out.println("Lỗi delete tài khoản!");
 			e.printStackTrace();
 		}
 		return row;
@@ -150,7 +150,7 @@ public class ModelUser {
             ps.close();
 		} 
         catch (Exception e) {
-        	System.out.println("Loi them tai khoan!");
+        	System.out.println("Lỗi thêm tài khoản!");
         	e.printStackTrace();
 		}
 		return row;
@@ -177,7 +177,7 @@ public class ModelUser {
             return generatedKey;
         } 
         catch (Exception e) {
-            System.out.println("Khong the truy van!");
+            System.out.println("Không thể truy vấn!");
             e.printStackTrace();
         }
         return 0;
@@ -195,7 +195,7 @@ public class ModelUser {
             ps.close();
         } 
         catch (Exception e) {
-            System.out.println("Loi tim ten nhan vien !");
+            System.out.println("Lỗi tìm tên nhân viên !");
         	e.printStackTrace();
         }
         return true;

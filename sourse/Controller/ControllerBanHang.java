@@ -84,7 +84,7 @@ public class ControllerBanHang {
 
         /* Hien thi danh sach san pham len table sach */
         // cai dat model sach
-        DefaultTableModel modelSP = new DefaultTableModel(new String[]{"Ma Sach", "Ten Sach", "Tac Gia", "Gia", "So Luong"}, 0) {
+        DefaultTableModel modelSP = new DefaultTableModel(new String[]{"Mã Sách", "Tên Sách", "Tác Giả", "Gía", "Số Lượng"}, 0) {
             @Override
             public boolean isCellEditable(int row, int col) {
                 return false;
@@ -161,7 +161,7 @@ public class ControllerBanHang {
 
         /* Hien thi CTHD khi chon tren table sach */
         // cai dat model
-        DefaultTableModel modelCTHD = new DefaultTableModel(new String[]{"Ma Sach", "Ten Sach", "Gia", "So Luong", "Thanh tien"}, 0) {
+        DefaultTableModel modelCTHD = new DefaultTableModel(new String[]{"Mã Sách", "Tên Sách", "Giá", "Số Lượng", "Thành Tiền"}, 0) {
             @Override
             public boolean isCellEditable(int row, int col) {
                 return (col == 3);
@@ -238,7 +238,7 @@ public class ControllerBanHang {
         btDeleteCTHD.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int dia = JOptionPane.showConfirmDialog(null, "Ban co muon xoa khong?", "Thong bao",
+                int dia = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa không?", "Thông báo",
                         JOptionPane.YES_NO_OPTION);
                 if (dia == JOptionPane.YES_OPTION) {
                     Sach s = ModelSach.getSach(Integer.parseInt(modelCTHD.getValueAt(tableCTHD.getSelectedRow(), 0).toString()));
@@ -250,9 +250,9 @@ public class ControllerBanHang {
                     o[4] = s.getSoLuong();
                     modelSP.addRow(o);
                     modelCTHD.removeRow(tableCTHD.getSelectedRow());
-                    tfThongBao.setText("Xoa thanh cong !");
+                    tfThongBao.setText("Xóa thành công !");
                 } else {
-                    tfThongBao.setText("Xoa khong thanh cong!");
+                    tfThongBao.setText("Xóa không thành công!");
                 }
 
                 // Tinh tong tien
@@ -268,7 +268,7 @@ public class ControllerBanHang {
         btnAddHD.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int dia = JOptionPane.showConfirmDialog(null, "Ban co muon luu khong?", "Thong bao",
+                int dia = JOptionPane.showConfirmDialog(null, "Bạn có muốn lưu không?", "Thông báo",
                         JOptionPane.YES_NO_OPTION);
                 if (dia == JOptionPane.YES_OPTION) {
                     HoaDon hd = new HoaDon();
@@ -291,9 +291,9 @@ public class ControllerBanHang {
                     hd.setCthd(cthds);
                     int id = ModelHoaDon.insert(hd);
                     if (id == 0) {
-                        tfThongBao.setText("Luu hoa don khong thanh cong !");
+                        tfThongBao.setText("Lưu hóa đơn không thành công !");
                     } else {
-                        tfThongBao.setText("Luu hoa don thanh cong !");
+                        tfThongBao.setText("Lưu hóa đơn thành công  !");
                         tfMaHD.setText(Integer.toString(id));
                     }
                 }

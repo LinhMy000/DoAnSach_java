@@ -69,7 +69,7 @@ public class ControllerSach {
  
     public void setViewAndEvent() {
         DefaultTableModel model = new DefaultTableModel(
-                new String[] {"STT","MaSach", "TenSach", "TacGia", "Gia", "SoLuong"},0) {
+                new String[] {"STT","Mã Sách", "Tên Sách", "Tác Giả", "Giá", "Số Lượng"},0) {
             @Override
             public boolean isCellEditable(int row, int col) {
                 return (col != 0 && col != 1);
@@ -154,11 +154,11 @@ public class ControllerSach {
                         sach.setGia(Double.parseDouble(model.getValueAt(index, 4).toString()));
                         sach.setSoLuong(Integer.parseInt(model.getValueAt(index, 5).toString()));
                     }
-                    int row = ModelSach.createOrUpdate(sach);
+                    int row = ModelSach.update(sach);
                     if (row > 0) {
-                        jlbMsg.setText("Sua thanh cong!");
+                        jlbMsg.setText("Sửa thành công!");
                     } else {
-                        jlbMsg.setText("Sua khong thanh cong!");
+                        jlbMsg.setText("Sửa không thành công!");
                     }
                 }
             });
@@ -166,10 +166,8 @@ public class ControllerSach {
             btnSubmit.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (jtfTenSach.getText().length() == 0) {
-                        jlbMsg.setText("Vui long dien day du thong tin!");
-                    } else {
-                        int dia = JOptionPane.showConfirmDialog(null, "Ban co muon them khong?", "Thong bao",
+                     
+                        int dia = JOptionPane.showConfirmDialog(null, "Bạn có muốn thêm không?", "Thông báo",
                                 JOptionPane.YES_NO_OPTION);
                         if (dia == JOptionPane.YES_OPTION) {
 
@@ -178,12 +176,12 @@ public class ControllerSach {
                             sach.setTacGia(jtfTacGia.getText());
                             sach.setGia(Double.parseDouble(jtfGia.getText()));
                             sach.setSoLuong(Integer.parseInt(jtfSoLuong.getText()));                          
-                            list.add(sach);
+//                            list.add(sach);
                             
                             int row = ModelSach.insert(sach);
                             if (row != 0) {
-                                jlbMsg.setText("Them thanh cong!");
-                                jtfTenSach.setText(null);
+                                jlbMsg.setText("Thêm thành công!");
+//                                jtfTenSach.setText(null);
 
 //                                 Xoa table cu
                                 while (model.getRowCount() > 0) {
@@ -206,23 +204,23 @@ public class ControllerSach {
                                     model.addRow(obj);
                                 }
                             } else {
-                                jlbMsg.setText("Them khong thanh cong!");
+                                jlbMsg.setText("Thêm không thành công!");
                             }
                         }
                     }
-                }
+                
             });
 
             btnXoa.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    int dia = JOptionPane.showConfirmDialog(null, "Ban co muon xoa khong?", "Thong bao",
+                    int dia = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa không?", "Thông báo",
                             JOptionPane.YES_NO_OPTION);
                     if (dia == JOptionPane.YES_OPTION) {
                         int id = Integer.parseInt(model.getValueAt(table.getSelectedRow(), 1).toString());
                         int row = ModelSach.delete(id);
                         if (row > 0) {
-                            jlbMsg.setText("Xoa thanh cong " + row + " dong!");
+                            jlbMsg.setText("Xóa thành công " + row + " dòng!");
 
                             // Xoa table cu
                             while (model.getRowCount() > 0) {
@@ -245,7 +243,7 @@ public class ControllerSach {
                                 model.addRow(obj);
                             }
                         } else {
-                            jlbMsg.setText("Xoa khong thanh cong!");
+                            jlbMsg.setText("Xóa không thành công!");
                         }
                     }
                 }

@@ -45,16 +45,16 @@ public class ControllerDangNhap {
 			public void actionPerformed(ActionEvent e) {
 				try {
                     if (tfTaiKhoan.getText().length() == 0 || tfMatKhau.getText().length() == 0) {
-                        lbThongBao.setText("Vui long nhap day du thong tin!");
+                        lbThongBao.setText("Vui lòng nhập đầy đủ thông tin!");
                     } 
                     else {
                         User user = modelUser.login(tfTaiKhoan.getText(), tfMatKhau.getText());
                         if (user == null) {
-                            lbThongBao.setText("Tai khoan khong hop le!");
+                            lbThongBao.setText("Tài khoản không hợp lệ!");
                         } 
                         else {
                             if (!user.isTinhTrang()) {
-                            	lbThongBao.setText("Tai khoan dang bi khoa!");
+                            	lbThongBao.setText("Tài khoản đang bị khóa!");
                             } 
                             else {
                             	if(!user.isQuyen()) {
@@ -76,7 +76,7 @@ public class ControllerDangNhap {
                     }
                 } 
                 catch (Exception ex) {
-                	System.out.println("Loi enter dang nhap!");
+                	System.out.println("Lỗi enter đăng nhập!");
                     lbThongBao.setText(ex.toString());
                 }
 			}
@@ -87,16 +87,16 @@ public class ControllerDangNhap {
             public void mouseClicked(MouseEvent e) {
                 try {
                     if (tfTaiKhoan.getText().length() == 0 || tfMatKhau.getText().length() == 0) {
-                        lbThongBao.setText("Vui long nhap day du thong tin!");
+                        lbThongBao.setText("Vui lòng nhập đầy đủ thông tin!");
                     } 
                     else {
                         User user = modelUser.login(tfTaiKhoan.getText(), tfMatKhau.getText());
                         if (user == null) {
-                            lbThongBao.setText("Tai khoan khong hop le!");
+                            lbThongBao.setText("Tài khoản không hợp lệ!");
                         } 
                         else {
                             if (!user.isTinhTrang()) {
-                            	lbThongBao.setText("Tai khoan dang bi khoa!");
+                            	lbThongBao.setText("Tài khoản đang bị khóa!");
                             } 
                             else {
                             	if(!user.isQuyen()) {
@@ -118,7 +118,7 @@ public class ControllerDangNhap {
                     }
                 } 
                 catch (Exception ex) {
-                	System.out.println("Loi submit dang nhap!");
+                	System.out.println("Lỗi submit đăng nhập!");
                     lbThongBao.setText(ex.toString());
                 }
             }
@@ -143,7 +143,7 @@ public class ControllerDangNhap {
 	       	    	pnView.repaint();
 				} 
                 catch (Exception e2) {
-                	System.out.println("Loi submit dang ky!");
+                	System.out.println("Lỗi submit đăng ký!");
                     lbThongBao.setText(e2.toString());
 				}
             }

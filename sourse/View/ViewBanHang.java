@@ -41,7 +41,7 @@ public class ViewBanHang extends JPanel {
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
 		
-		JButton btDelete = new JButton("Xoa");
+		JButton btDelete = new JButton("XÓA");
 		panel_3.add(btDelete);
 		
 		JPanel pnCTHD = new JPanel();
@@ -51,7 +51,7 @@ public class ViewBanHang extends JPanel {
 		add(panel_1);
 		panel_1.setLayout(new GridLayout(8, 2, 5, 5));
 		
-		JLabel lbmahd = new JLabel("Ma HD");
+		JLabel lbmahd = new JLabel("Mã HD");
 		panel_1.add(lbmahd);
 		
 		tfMaHD = new JTextField();
@@ -59,25 +59,25 @@ public class ViewBanHang extends JPanel {
 		panel_1.add(tfMaHD);
 		tfMaHD.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Khach hang");
+		JLabel lblNewLabel = new JLabel("Khách Hàng");
 		panel_1.add(lblNewLabel);
 		
 		JComboBox cbKH = new JComboBox<KhachHang>();
 		panel_1.add(cbKH);
 		
-		JLabel lblNewLabel_1 = new JLabel("Nhan vien");
+		JLabel lblNewLabel_1 = new JLabel("Nhân Viên");
 		panel_1.add(lblNewLabel_1);
 		
 		JComboBox cbNV = new JComboBox<User>();
 		panel_1.add(cbNV);
 		
-		JLabel lblNewLabel_2 = new JLabel("Ngay HD");
+		JLabel lblNewLabel_2 = new JLabel("Ngày HD");
 		panel_1.add(lblNewLabel_2);
 		
 		JDateChooser dcNgayHD = new JDateChooser(new java.sql.Date(System.currentTimeMillis()));
 		panel_1.add(dcNgayHD);
 
-		JLabel lblNewLabel_3 = new JLabel("Tong tien");
+		JLabel lblNewLabel_3 = new JLabel("Tổng Tiền");
 		panel_1.add(lblNewLabel_3);
 		
 		tfTT = new JTextField();
@@ -85,10 +85,10 @@ public class ViewBanHang extends JPanel {
 		panel_1.add(tfTT);
 		tfTT.setColumns(10);
 		
-		JButton btAdd = new JButton("Xac nhan");
+		JButton btAdd = new JButton("XÁC NHẬN");
 		panel_1.add(btAdd);
 		
-		JButton btOut = new JButton("Xuat HD");
+		JButton btOut = new JButton("XUẤT HD");
 		panel_1.add(btOut);
 		
 		JLabel lbTB = new JLabel("");

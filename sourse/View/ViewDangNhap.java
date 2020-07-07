@@ -17,6 +17,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -73,7 +74,7 @@ public class ViewDangNhap extends JDialog {
 			contentPanel.add(pnView);
 			pnView.setLayout(new GridLayout(6, 0, 0, 0));
 			{
-				JLabel lbTaiKhoan = new JLabel("Tai khoan");
+				JLabel lbTaiKhoan = new JLabel("Tài Khoản");
 				lbTaiKhoan.setFont(new Font("Tahoma", Font.PLAIN, 13));
 				pnView.add(lbTaiKhoan);
 			}
@@ -84,18 +85,18 @@ public class ViewDangNhap extends JDialog {
 				tfTaiKhoan.setColumns(10);
 			}
 			{
-				JLabel lbMatKhau = new JLabel("Mat khau");
+				JLabel lbMatKhau = new JLabel("Mật Khẩu");
 				lbMatKhau.setFont(new Font("Tahoma", Font.PLAIN, 13));
 				pnView.add(lbMatKhau);
 			}
 			{
-				tfMatKhau = new JTextField();
+				tfMatKhau = new JPasswordField();
 				tfMatKhau.setFont(new Font("Tahoma", Font.PLAIN, 13));
 				pnView.add(tfMatKhau);
 				tfMatKhau.setColumns(10);
 			}
 			{
-				lbThongBao = new JLabel("Vui long nhap thong tin");
+				lbThongBao = new JLabel("Vui lòng nhập thông tin");
 				lbThongBao.setFont(new Font("Tahoma", Font.PLAIN, 12));
 				lbThongBao.setHorizontalAlignment(SwingConstants.CENTER);
 				pnView.add(lbThongBao);
@@ -104,13 +105,13 @@ public class ViewDangNhap extends JDialog {
 				JPanel buttonPane = new JPanel();
 				pnView.add(buttonPane, BorderLayout.SOUTH);
 				{
-					btDangNhap = new JButton("DANG NHAP");
+					btDangNhap = new JButton("ĐĂNG NHẬP");
 					btDangNhap.setActionCommand("OK");
 					buttonPane.add(btDangNhap);
 					getRootPane().setDefaultButton(btDangNhap);
 				}
 				{
-					btDangKy = new JButton("DANG KY");
+					btDangKy = new JButton("ĐĂNG KÝ");
 					btDangKy.setActionCommand("");
 					buttonPane.add(btDangKy);
 				}

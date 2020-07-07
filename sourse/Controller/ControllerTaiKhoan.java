@@ -55,7 +55,7 @@ public class ControllerTaiKhoan {
 
 	public void setViewAndEvent() {
 		DefaultTableModel model = new DefaultTableModel(
-				new String[] { "STT", "ID", "Tai Khoan", "Mat Khau", "Ho Ten", "Tinh Trang", "Quyen" }, 0) {
+				new String[] { "STT", "ID", "Tài Khoản", "Mật Khẩu", "Họ Tên", "Tình Trạng", "Quyền" }, 0) {
 			@Override
 			public boolean isCellEditable(int row, int col) {
 				return (col != 0 && col != 1);
@@ -147,9 +147,9 @@ public class ControllerTaiKhoan {
 				}
 				int row = ModelUser.update(user);
 				if (row > 0) {
-					tfThongBao.setText("Sua thanh cong!");
+					tfThongBao.setText("Sửa thành công!");
 				} else {
-					tfThongBao.setText("Sua khong thanh cong!");
+					tfThongBao.setText("Sửa không thành công!");
 				}
 			}
 		});
@@ -160,10 +160,10 @@ public class ControllerTaiKhoan {
 			public void actionPerformed(ActionEvent e) {
 				if (tfTaiKhoan.getText().length() == 0 || tfMatKhau.getText().length() == 0
 						|| tfHoTen.getText().length() == 0) {
-					tfThongBao.setText("Vui long dien day du thong tin!");
+					tfThongBao.setText("Vui lòng điền đầy đủ thông tin!");
 				} 
 				else {
-					int dia = JOptionPane.showConfirmDialog(null, "Ban co muon them khong?", "Thong bao",
+					int dia = JOptionPane.showConfirmDialog(null, "Bạn có muốn thêm không?", "Thông báo",
 							JOptionPane.YES_NO_OPTION);
 					if (dia == JOptionPane.YES_OPTION) {
 						User user = new User();
@@ -176,7 +176,7 @@ public class ControllerTaiKhoan {
 //						list.add(user);
 						int row = ModelUser.insert(user);
 						if (row != 0) {
-							tfThongBao.setText("Them thanh cong!");
+							tfThongBao.setText("Thêm thành công!");
 							tfTaiKhoan.setText(null);
 							tfMatKhau.setText(null);
 							tfHoTen.setText(null);
@@ -201,24 +201,24 @@ public class ControllerTaiKhoan {
 								model.addRow(obj);
 							}
 						} else {
-							tfThongBao.setText("Them khong thanh cong!");
+							tfThongBao.setText("Thêm không thành công!");
 						}
 					}
 				}
-			}
+                        }
 		});
 
 		// Xoa
 		btDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int dia = JOptionPane.showConfirmDialog(null, "Ban co muon xoa khong?", "Thong bao",
+				int dia = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa không?", "Thông báo",
 						JOptionPane.YES_NO_OPTION);
 				if (dia == JOptionPane.YES_OPTION) {
 					int id = (int) model.getValueAt(table.getSelectedRow(), 1);
 					int row = ModelUser.delete(id);
 					if (row > 0) {
-						tfThongBao.setText("Xoa thanh cong " + row + " dong!");
+						tfThongBao.setText("Xóa thành công " + row + " dòng!");
 
 						// Xoa table cu
 						while (model.getRowCount() > 0) {
@@ -241,7 +241,7 @@ public class ControllerTaiKhoan {
 							model.addRow(obj);
 						}
 					} else {
-						tfThongBao.setText("Xoa khong thanh cong!");
+						tfThongBao.setText("Xóa không thành công!");
 					}
 				}
 			}

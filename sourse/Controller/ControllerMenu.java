@@ -15,6 +15,7 @@ import View.ViewKhachHang;
 import View.ViewSach;
 import View.ViewThongKe;
 import View.ViewTrangChu;
+import View.ViewTrangChu;
 import View.ViewUser;
 
 public class ControllerMenu {

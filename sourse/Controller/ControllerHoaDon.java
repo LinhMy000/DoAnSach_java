@@ -36,7 +36,7 @@ public class ControllerHoaDon {
 
     public void setViewAndEvent() {
         //tạo table hoa don
-        DefaultTableModel modelSP = new DefaultTableModel(new String[]{"STT", "Ma HD", "Ngay HD", "Ma KH", "Ma NV", "Tong Tien"}, 0) {
+        DefaultTableModel modelSP = new DefaultTableModel(new String[]{"STT", "Mã HD", "Ngày HD", "Mã KH", "Mã NV", "Tổng Tiền"}, 0) {
             @Override
             public boolean isCellEditable(int row, int col) {
                 return false;
@@ -110,7 +110,7 @@ public class ControllerHoaDon {
         });
 
         //hien thi chi tiet hoa don khi chon model hoa don
-        DefaultTableModel modelCTHD = new DefaultTableModel(new String[]{"Ma HD", "Ma Sach", "So Luong", "Thanh Tien"}, 0);
+        DefaultTableModel modelCTHD = new DefaultTableModel(new String[]{"Mã HD", "Mã Sách", "Số Lượng"}, 0);
         tableSP.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -127,12 +127,10 @@ public class ControllerHoaDon {
                     Object[] obj;
                     for (int i = 0; i < list.size(); i++) {
                         cthd = list.get(i);
-                        obj = new Object[4];       
+                        obj = new Object[3];       
                         obj[0] = cthd.getMaHD();
                         obj[1] = cthd.getMaSach();
                         obj[2] = cthd.getSoLuong();
-                        obj[3] = cthd.getThanhTien();
-
                         modelCTHD.addRow(obj);
                         modelSP.removeRow(id);
                     }

@@ -61,6 +61,25 @@ public class ModelSach {
         }
         return list;
     }
+    public static int update(Sach sach) {
+		int row = 0;
+		String sql = "update sach set tensach = ?, tacgia = ?, gia = ?, soluong = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+                        ps.setString(1, sach.getTenSach());
+                        ps.setString(2,sach.getTacGia());
+                        ps.setDouble(3, sach.getGia());
+                        ps.setInt(4, sach.getSoLuong());
+                        
+			row = ps.executeUpdate();
+			ps.close();
+		} 
+		catch (Exception ex) {
+        	System.out.println("Lỗi update sách!");
+			ex.printStackTrace();
+		}
+		return row;
+	}
 
     public static int createOrUpdate(Sach sach) {
         int generatedKey = 0;

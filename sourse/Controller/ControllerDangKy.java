@@ -42,15 +42,15 @@ public class ControllerDangKy {
 			public void actionPerformed(ActionEvent e) {
 				try {
                 	if(ModelUser.KiemTraTaiKhoan(tfTaiKhoan.getText()) == false) {
-                        lbThongBao.setText("Tai khoan da ton tai!");                		
+                        lbThongBao.setText("Tài khoản đã tồn tại!");                		
                 	}
                 	else if (tfTaiKhoan.getText().length() == 0 || tfMatKhau.getText().length() == 0 || tfHoTen.getText().length() == 0) {
-                        lbThongBao.setText("Vui long nhap day du thong tin!");
+                        lbThongBao.setText("Vui lòng nhập đầy đủ thông tin!");
                     } 
                     else {
                     	int row = ModelUser.register(tfTaiKhoan.getText(), tfMatKhau.getText(), tfHoTen.getText());
                     	if(row == 0)
-                    		lbThongBao.setText("Dang ky không thành cong!");
+                    		lbThongBao.setText("Đăng ký không thành công!");
                     	else {
                     		dia.dispose();
                     		dia.hide();
@@ -62,7 +62,7 @@ public class ControllerDangKy {
                     }
                 } 
                 catch (Exception ex) {
-                	System.out.println("Loi dang ky!");
+                	System.out.println("Lỗi đăng ký!");
                     lbThongBao.setText(ex.toString());
                 }
 			}
@@ -73,15 +73,15 @@ public class ControllerDangKy {
             public void mouseClicked(MouseEvent e) {
                 try {
                 	if(ModelUser.KiemTraTaiKhoan(tfTaiKhoan.getText()) == false) {
-                        lbThongBao.setText("Tai khoan da ton tai!");                		
+                        lbThongBao.setText("Tài khoản đã tồn tại!");                		
                 	}
                 	else if (tfTaiKhoan.getText().length() == 0 || tfMatKhau.getText().length() == 0 || tfHoTen.getText().length() == 0) {
-                        lbThongBao.setText("Vui long nhap day du thong tin!");
+                        lbThongBao.setText("Vui lòng nhập đầy đủ thông tin!");
                     } 
                     else {
                     	int row = ModelUser.register(tfTaiKhoan.getText(), tfMatKhau.getText(), tfHoTen.getText());
                     	if(row == 0)
-                    		lbThongBao.setText("Dang ky không thành cong!");
+                    		lbThongBao.setText("Đăng ký không thành công!");
                     	else {
                     		dia.dispose();
                     		dia.hide();
@@ -94,7 +94,7 @@ public class ControllerDangKy {
                     }
                 } 
                 catch (Exception ex) {
-                	System.out.println("Loi dang ky!");
+                	System.out.println("Lỗi đăng ký!");
                     lbThongBao.setText(ex.toString());
                 }
             }

@@ -26,15 +26,15 @@ public class ControllerThongKe {
 		cbb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switch (cbb.getSelectedItem().toString()) {
-				case "Sach ban chay nhat": {
+				case "Sách bán chạy nhất": {
 					setChartSach(jpnItem);
 					break;
 				}
-				case "Tac gia duoc yeu thich nhat": {
+				case "Tác giả được yêu thích nhất": {
 					setChartTacGia(jpnItem);
 					break;
 				}
-				case "Doanh thu theo thang": {
+				case "Doanh thu theo tháng": {
 					setChartDoanhThuThang(jpnItem);
 					break;
 				}
@@ -50,13 +50,13 @@ public class ControllerThongKe {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         if (listItem != null) {
             for (ThongKeSach item : listItem) {
-                dataset.addValue(item.getSl(), "Sach", item.getTen());
+                dataset.addValue(item.getSl(), "Sách", item.getTen());
             }
         }
 
         JFreeChart barChart = ChartFactory.createBarChart(
-                "Bieu do thong ke sach ban chay nhat".toUpperCase(),
-                "Ten sach", "So luong",
+                "Biểu đồ thống kê sách bán chạy nhất".toUpperCase(),
+                "Tên Sách", "Số lượng",
                 dataset, PlotOrientation.VERTICAL, false, true, false);
 
         ChartPanel chartPanel = new ChartPanel(barChart);
@@ -74,13 +74,13 @@ public class ControllerThongKe {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         if (listItem != null) {
             for (ThongKeSach item : listItem) {
-                dataset.addValue(item.getSl(), "Tac gia", item.getTen());
+                dataset.addValue(item.getSl(), "Tác giả", item.getTen());
             }
         }
 
         JFreeChart barChart = ChartFactory.createBarChart(
-                "Bieu do thong ke tac gia duoc yeu thich nhat".toUpperCase(),
-                "Tac gia", "So luong",
+                "Biểu đồ thống kê tác giả được yêu thích nhất".toUpperCase(),
+                "Tác giả", "Số Lượng",
                 dataset, PlotOrientation.VERTICAL, false, true, false);
 
         ChartPanel chartPanel = new ChartPanel(barChart);
@@ -98,13 +98,13 @@ public class ControllerThongKe {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         if (listItem != null) {
             for (ThongKeDoanhThu item : listItem) {
-                dataset.addValue(item.getTien(), "Doanh thu", "Thang " + String.valueOf(item.getTime()));
+                dataset.addValue(item.getTien(), "Doanh thu", "Tháng " + String.valueOf(item.getTime()));
             }
         }
 
         JFreeChart barChart = ChartFactory.createBarChart(
-                "Bieu do thong ke doanh thu theo thang".toUpperCase(),
-                "Nam 2020", "Doanh thu",
+                "Biểu đồ thống kê doanh thu theo tháng".toUpperCase(),
+                "Năm 2020", "Doanh thu",
                 dataset, PlotOrientation.VERTICAL, false, true, false);
 
         ChartPanel chartPanel = new ChartPanel(barChart);

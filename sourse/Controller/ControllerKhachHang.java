@@ -1,29 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
-import Connection.ConnectionUser;
 import Model.ModelKhachHang;
-import Model.ModelUser;
 import Table.KhachHang;
-import Table.User;
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import com.toedter.calendar.JDateChooser;
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.sql.Date;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -57,13 +43,9 @@ public class ControllerKhachHang {
     private JPanel jpnRoot;
     private JTextField jtfSearch;
 
-   
-    private ModelKhachHang mkh = null;
-  
-
     public ControllerKhachHang() {
     }
-    
+
     public ControllerKhachHang(JButton btnThem, JButton btnXoa, JTextField jtfMaKH, JTextField jtfTenKH, JDateChooser jdcNgaySinh, JTextField jtfSoDT, JTextField jtfDiaChi, JTextField jtfDiem, JLabel jlbThongBao, JPanel jpnRoot, JTextField jtfSearch) {
         this.btnThem = btnThem;
         this.btnXoa = btnXoa;
@@ -76,13 +58,12 @@ public class ControllerKhachHang {
         this.jlbThongBao = jlbThongBao;
         this.jpnRoot = jpnRoot;
         this.jtfSearch = jtfSearch;
-        
-    }
 
+    }
 
     public void setViewAndEvent() {
         DefaultTableModel model = new DefaultTableModel(
-                new String[] {"STT", "MaKH", "Ho va Ten", "Ngay Sinh", "So Dien Thoai", "Dia Chi", "Diem"},0) {
+                new String[]{"STT", "Mã KH", "Họ và Tên", "Ngày Sinh", "Số Điện Thoại", "Địa Chỉ", "Điểm"}, 0) {
             @Override
             public boolean isCellEditable(int row, int col) {
                 return (col != 0 && col != 1);
@@ -112,7 +93,7 @@ public class ControllerKhachHang {
             JTable table = new JTable(model);
             TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(model);
             table.setRowSorter(rowSorter);
-            
+
             table.getTableHeader().setFont(new Font("Tohoma", Font.BOLD, 14));
             table.getTableHeader().setPreferredSize(new Dimension(60, 50));
             table.setRowHeight(40);
@@ -169,62 +150,47 @@ public class ControllerKhachHang {
                         khachhang.setDiaChi((String) model.getValueAt(index, 5));
                         khachhang.setDiem((int) model.getValueAt(index, 6));
                     }
-                    int row = ModelKhachHang.insert(khachhang);
+                    int row = ModelKhachHang.update(khachhang);
                     if (row > 0) {
-                        jlbThongBao.setText("Sua thanh cong!");
+                        jlbThongBao.setText("Sửa thành công!");
                     } else {
-                        jlbThongBao.setText("Sua khong thanh cong!");
+                        jlbThongBao.setText("Sửa không thành công!");
                     }
                 }
             });
-
             btnThem.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (jtfTenKH.getText().length() == 0) {
-                        jlbThongBao.setText("Vui lòng điền đầy đủ thông tin!");
-                    } else {
-                        int dia = JOptionPane.showConfirmDialog(null, "Bạn có thông báo không?", "Thông báo",
-                                JOptionPane.YES_NO_OPTION);
-                        if (dia == JOptionPane.YES_OPTION) {
+                    int dia = JOptionPane.showConfirmDialog(null, "Bạn có muốn thêm không? ", "Thông Báo", JOptionPane.YES_NO_OPTION);
+                    if (dia == JOptionPane.YES_OPTION) {
+                        KhachHang khachhang = new KhachHang();
+                        khachhang.setHoTen(jtfTenKH.getText());
+                        khachhang.setNgaySinh(new java.sql.Date(jdcNgaySinh.getDate().getTime()));
+                        khachhang.setSdt(jtfSoDT.getText());
+                        khachhang.setDiaChi(jtfDiaChi.getText());
+                        int row = ModelKhachHang.insert(khachhang);
+                        if (row != 0) {
+                            jlbThongBao.setText("Thêm thành công!");
 
-                            KhachHang khachhang = new KhachHang();
-                            khachhang.setHoTen(jtfTenKH.getText());
-                            khachhang.setNgaySinh(new java.sql.Date(jdcNgaySinh.getDate().getTime()));
-                            khachhang.setDiaChi(jtfDiaChi.getText());
-                            khachhang.setSdt(jtfSoDT.getText());
-                            khachhang.setDiem(0);
-                            list.add(khachhang);
-                            
-                            int row = ModelKhachHang.insert(khachhang);
-                            if (row != 0) {
-                                jlbThongBao.setText("Thêm thành công!");
-                                jtfTenKH.setText(null);
-
-//                                 Xoa table cu
-                                while (model.getRowCount() > 0) {
-                                    model.removeRow(0);
-                                }
-                                // Tai lai table moi
-
-                                List<KhachHang> list = ModelKhachHang.getList();
-                                Object[] obj;
-                                for (int i = 0; i < list.size(); i++) {
-
-                                    khachhang = list.get(i);
-                                    obj = new Object[7];
-                                    obj[0] = (i + 1);
-                                    obj[1] = khachhang.getMaKH();
-                                    obj[2] = khachhang.getHoTen();
-                                    obj[3] = khachhang.getNgaySinh();
-                                    obj[4] = khachhang.getSdt();
-                                    obj[5] = khachhang.getDiaChi();
-                                    obj[6] = khachhang.getDiem();
-                                    model.addRow(obj);
-                                }
-                            } else {
-                                jlbThongBao.setText("Thêm không thành công!");
+                            while (model.getRowCount() > 0) {
+                                model.removeRow(0);
                             }
+                            List<KhachHang> list = ModelKhachHang.getList();
+                            Object[] obj;
+                            for (int i = 0; i < list.size(); i++) {
+                                khachhang = list.get(i);
+                                obj = new Object[7];
+                                obj[0] = (i + 1);
+                                obj[1] = khachhang.getMaKH();
+                                obj[2] = khachhang.getHoTen();
+                                obj[3] = khachhang.getNgaySinh();
+                                obj[4] = khachhang.getSdt();
+                                obj[5] = khachhang.getDiaChi();
+                                obj[6] = khachhang.getDiem();
+                                model.addRow(obj);
+                            }
+                        } else {
+                            jlbThongBao.setText("Thêm không thành công !");
                         }
                     }
                 }
@@ -236,7 +202,7 @@ public class ControllerKhachHang {
                     int dia = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa không?", "Thông báo",
                             JOptionPane.YES_NO_OPTION);
                     if (dia == JOptionPane.YES_OPTION) {
-                        int id = (int) model.getValueAt(table.getSelectedRow(), -1);
+                        int id = Integer.parseInt( model.getValueAt(table.getSelectedRow(), 1).toString());
                         int row = ModelKhachHang.delete(id);
                         if (row > 0) {
                             jlbThongBao.setText("Xóa thành công " + row + " dòng!");
@@ -250,7 +216,6 @@ public class ControllerKhachHang {
                             KhachHang khachhang = null;
                             Object[] obj;
                             for (int i = 0; i < list.size(); i++) {
-
                                 khachhang = list.get(i);
                                 obj = new Object[7];
                                 obj[0] = (i + 1);
@@ -263,12 +228,12 @@ public class ControllerKhachHang {
                                 model.addRow(obj);
                             }
                         } else {
-                            jlbThongBao.setText("Thêm không thành công!");
+                            jlbThongBao.setText("Xóa không thành công!");
                         }
                     }
                 }
-           });
-      }
-   }
+            });
+        }
+    }
 }
 //   

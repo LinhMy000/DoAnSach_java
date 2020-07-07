@@ -14,7 +14,7 @@ public class ViewDangKy extends JPanel {
 		add(panel);
 		panel.setLayout(new GridLayout(4, 0, 1, 1));
 		{
-			JLabel lbTaiKhoan = new JLabel("Tai khoan");
+			JLabel lbTaiKhoan = new JLabel("Tài Khoản");
 			lbTaiKhoan.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			panel.add(lbTaiKhoan);
 			
@@ -24,7 +24,7 @@ public class ViewDangKy extends JPanel {
 			tfTaiKhoan.setColumns(10);
 		}
 		{
-			JLabel lbMatKhau = new JLabel("Mat khau");
+			JLabel lbMatKhau = new JLabel("Mật Khẩu");
 			lbMatKhau.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			panel.add(lbMatKhau);
 			
@@ -34,7 +34,7 @@ public class ViewDangKy extends JPanel {
 			tfMatKhau.setColumns(10);
 		}
 		{
-			JLabel lbHoTen = new JLabel("Ho ten");
+			JLabel lbHoTen = new JLabel("Họ Tên");
 			lbHoTen.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			panel.add(lbHoTen);
 			
@@ -48,11 +48,11 @@ public class ViewDangKy extends JPanel {
 		add(panel_1);
 		panel_1.setLayout(new GridLayout(2, 0, 0, 30));
 		{
-			JLabel lbThongBao = new JLabel("Vui long dien day du thong tin !");
+			JLabel lbThongBao = new JLabel("Vui lòng điền đủ thông tin!");
 			panel_1.add(lbThongBao);
 			lbThongBao.setFont(new Font("Tahoma", Font.PLAIN, 12));
 				
-			JButton btDangKy = new JButton("DANG KY");
+			JButton btDangKy = new JButton("ĐĂNG KÝ");
 			panel_1.add(btDangKy);
 		}
 	}
